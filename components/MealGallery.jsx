@@ -62,10 +62,10 @@ export default function MealGallery() {
           title="Real Indian meals, engineered for results"
           description="Every plan is a mix of meals you already love — portioned and balanced for your goal."
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {meals.map((meal, i) => (
             <Reveal key={meal.title} delay={0.05 * (i % 4)}>
-              <div className="group relative overflow-hidden rounded-3xl bg-dark">
+              <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-dark">
                 <div className="aspect-[4/5] overflow-hidden">
                   <Image
                     src={meal.img}
@@ -77,12 +77,12 @@ export default function MealGallery() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
-                <span className="absolute left-4 top-4 rounded-full bg-lime px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink">
+                <span className="absolute left-2.5 top-2.5 sm:left-4 sm:top-4 rounded-full bg-lime px-2 py-0.5 sm:px-3 sm:py-1 text-[0.6rem] sm:text-[0.6875rem] font-bold uppercase tracking-wide text-ink">
                   {meal.tag}
                 </span>
-                <div className="absolute inset-x-4 bottom-4">
-                  <h3 className="heading text-lg text-white">{meal.title}</h3>
-                  <p className="mt-1 text-xs font-semibold text-lime">
+                <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4">
+                  <h3 className="heading text-base sm:text-lg text-white leading-tight">{meal.title}</h3>
+                  <p className="mt-0.5 sm:mt-1 text-[0.65rem] sm:text-xs font-semibold text-lime">
                     {meal.kcal}
                   </p>
                 </div>

@@ -10,6 +10,12 @@ export default function Hero() {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // Always start at the top on reload so the intro replays from home
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
     // Disable body scroll during preloading
     document.body.style.overflow = "hidden";
 
@@ -88,8 +94,6 @@ export default function Hero() {
     const descLines = splitWordsToLines(descEl);
 
     // Initial GSAP setup
-    gsap.set(logoChars, { xPercent: 100 });
-    gsap.set(footerLines, { yPercent: 100 });
     gsap.set(heroTitleChars, { yPercent: 100 });
     gsap.set([...subtitleLines, ...descLines], { yPercent: 100 });
     gsap.set(".preloader-progress-bar", { scaleX: 0, transformOrigin: "left center" });
@@ -118,11 +122,13 @@ export default function Hero() {
       return ptl;
     }
 
-    // Main animation timeline
+    // Main animation timeline — plays immediately on mount (no font wait) so
+    // the capsule loads without any perceived lag
     const tl = gsap.timeline({
-      delay: 0.2,
+      delay: 0.15,
       onComplete: () => {
         document.body.style.overflow = "";
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       },
     });
 
@@ -131,16 +137,6 @@ export default function Hero() {
       duration: 0.8,
       ease: "power4.out",
     })
-      .to(
-        logoChars,
-        {
-          xPercent: 0,
-          stagger: 0.04,
-          duration: 0.8,
-          ease: "power4.inOut",
-        },
-        "<"
-      )
       .to(
         ".preloader-logo-img",
         {
@@ -151,17 +147,7 @@ export default function Hero() {
         },
         "<"
       )
-      .to(
-        footerLines,
-        {
-          yPercent: 0,
-          stagger: 0.08,
-          duration: 0.8,
-          ease: "power4.inOut",
-        },
-        "0.2"
-      )
-      .add(animateProgress(), "<")
+      .add(animateProgress(), "0.2")
       .to(
         logoChars,
         {
@@ -205,19 +191,21 @@ export default function Hero() {
         ".preloader-mask",
         {
           scale: 6,
-          duration: 3.2,
-          ease: "power3.inOut",
+          duration: 4,
+          ease: "power3.out",
         },
         "<"
       )
       .to(
         ".preloader-mask",
         {
+          delay: 1,
           opacity: 0,
           duration: 0.5,
+          ease: "power3.out",
           display: "none",
         },
-        "-=0.5"
+        "<"
       )
       .to(
         ".hero-img-custom",

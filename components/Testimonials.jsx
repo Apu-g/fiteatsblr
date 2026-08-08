@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -47,26 +46,36 @@ const testimonials = [
 
 const stars = [1, 2, 3, 4, 5];
 
+function TestimonialCard({ t }) {
+  return (
+    <article className="t-card card-lift group w-[82vw] max-w-[400px] shrink-0 snap-start rounded-3xl glass-dark p-7 sm:w-[400px] hover:scale-[1.02]">
+      <div className="flex gap-1 text-lime">
+        {stars.map((s) => (
+          <StarIcon key={s} className="h-4 w-4" />
+        ))}
+      </div>
+      <p className="mt-5 min-h-28 text-sm leading-relaxed text-white/75">
+        “{t.text}”
+      </p>
+      <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
+        <Image
+          src={t.img}
+          alt={t.name}
+          width={48}
+          height={48}
+          className="h-12 w-12 rounded-full object-cover ring-2 ring-lime/40"
+          loading="lazy"
+        />
+        <div>
+          <p className="font-semibold text-white">{t.name}</p>
+          <p className="text-xs text-lime">{t.role}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Testimonials() {
-  const trackRef = useRef(null);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      if (paused || !trackRef.current) return;
-      const el = trackRef.current;
-      const card = el.querySelector(".t-card");
-      if (!card) return;
-      const scroll = el.scrollLeft + card.offsetWidth + 20;
-      if (scroll >= el.scrollWidth - el.clientWidth) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        el.scrollTo({ left: scroll, behavior: "smooth" });
-      }
-    }, 5000);
-    return () => clearInterval(id);
-  }, [paused]);
-
   return (
     <section id="testimonials" className="relative overflow-hidden bg-ink">
       <div className="glow-blob -top-32 left-0 h-80 w-80 bg-lime/30" />
@@ -79,41 +88,16 @@ export default function Testimonials() {
         />
 
         <Reveal>
-          <div
-            ref={trackRef}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {testimonials.map((t) => (
-              <article
-                key={t.name}
-                className="t-card card-lift group w-[86%] shrink-0 snap-start rounded-3xl glass-dark p-7 sm:w-[48%] lg:w-[31.5%] hover:scale-[1.02]"
-              >
-                <div className="flex gap-1 text-lime">
-                  {stars.map((s) => (
-                    <StarIcon key={s} className="h-4 w-4" />
+          <div className="t-marquee group cursor-grab active:cursor-grabbing">
+            <div className="t-marquee-track">
+              {[0, 1].map((copy) => (
+                <div key={copy} className="t-marquee-set flex shrink-0 gap-5 pr-5">
+                  {testimonials.map((t) => (
+                    <TestimonialCard key={t.name} t={t} />
                   ))}
                 </div>
-                <p className="mt-5 min-h-28 text-sm leading-relaxed text-white/75">
-                  “{t.text}”
-                </p>
-                <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
-                  <Image
-                    src={t.img}
-                    alt={t.name}
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 rounded-full object-cover ring-2 ring-lime/40"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="font-semibold text-white">{t.name}</p>
-                    <p className="text-xs text-lime">{t.role}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>

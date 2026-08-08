@@ -36,6 +36,11 @@ export default function RootLayout({ children }) {
       className={`${syne.variable} ${inter.variable} h-full scroll-smooth`}
     >
       <body className="min-h-full bg-white font-body text-ink antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{history.scrollRestoration="manual"}catch(e){}window.scrollTo({top:0,left:0,behavior:"instant"});`,
+          }}
+        />
         {children}
         {gaId ? (
           <>

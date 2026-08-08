@@ -38,12 +38,12 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="FitEats logo"
-            width={40}
-            height={40}
-            className="rounded-xl"
+            width={48}
+            height={48}
+            className="rounded-2xl"
             priority
           />
-          <span className="heading text-xl text-white">
+          <span className="heading text-2xl text-white">
             Fit<span className="text-lime">Eats</span>
           </span>
         </a>

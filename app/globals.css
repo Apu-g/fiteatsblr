@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 @import "tailwindcss";
+@tailwind base;
 
 @theme inline {
   --color-lime: #ccff00;
@@ -63,6 +65,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -248,7 +251,7 @@ body {
 .preloader-logo h1 {
   position: relative;
   color: #ffffff;
-  font-size: clamp(2.4rem, 4vw, 4.5rem);
+  font-size: clamp(2.8rem, 5vw, 5rem);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
@@ -257,6 +260,8 @@ body {
 
 .preloader-mask {
   background-color: var(--color-ink);
+  transform: translateZ(0);
+  backface-visibility: hidden;
   -webkit-mask:
     linear-gradient(#ffffff, #ffffff),
     url("/assets/preloader-bg.svg") center/42% no-repeat;
@@ -290,7 +295,7 @@ body {
 }
 
 .hero-section-custom {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding: 0.5rem;
   background: var(--color-ink);
@@ -480,7 +485,7 @@ body {
   }
 
   .preloader-logo h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .preloader-mask {
@@ -720,5 +725,293 @@ body {
 
   .sr-outro-line {
     font-size: clamp(1.4rem, 5vw, 2.5rem);
+  }
+}
+
+/* ── Process 3D Animation (source3 style) ─────────────────────────────────── */
+
+/* ── Testimonials marquee ─────────────────────────────────────────────────── */
+
+.t-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.t-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: t-marquee 16s linear infinite;
+}
+
+.t-marquee:hover .t-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes t-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 639px) {
+  .t-marquee-track {
+    animation-duration: 10s;
+  }
+}
+
+/* ── Process 3D Animation (source3 style) ─────────────────────────────────── */
+
+.process-outro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  min-height: 70svh;
+  padding: 5rem 2rem;
+  background-color: var(--color-ink);
+  color: #fff;
+}
+
+.process-eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid rgba(204, 255, 0, 0.3);
+  border-radius: 999px;
+  background: rgba(204, 255, 0, 0.1);
+  color: var(--color-lime);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.process-intro-desc {
+  margin: 0.85rem auto 0;
+  max-width: 28rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+.process-sticky {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100svh;
+  padding: 1rem;
+  overflow: hidden;
+  background-color: var(--color-ink);
+}
+
+.process-sticky-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: clamp(1.25rem, 3vh, 2rem);
+  z-index: 2;
+}
+
+.process-sticky-header h2 {
+  position: relative;
+  color: #fff;
+  font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+  will-change: transform, opacity;
+}
+
+.process-card-container {
+  position: relative;
+  width: 70%;
+  display: flex;
+  gap: 1rem;
+  perspective: 1000px;
+}
+
+.process-card {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 4/5;
+  border-radius: 1.5rem;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+.process-card-front,
+.process-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.process-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.process-card-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 18, 18, 0.1),
+    rgba(18, 18, 18, 0.55)
+  );
+}
+
+/* Glassmorphism card back */
+.process-card-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  transform: rotateY(180deg);
+  padding: 1.5rem 1.25rem 1.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.process-card-back h3 {
+  color: #fff;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  max-width: 15ch;
+}
+
+.process-card-text {
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.process-card-list {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.process-card-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+
+.process-card-check {
+  display: flex;
+  height: 1.125rem;
+  width: 1.125rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(204, 255, 0, 0.14);
+  color: var(--color-lime);
+}
+
+.process-card-num {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  opacity: 0.4;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+}
+
+/* Highlighted middle card */
+#process-card-1 .process-card-back {
+  background: rgba(204, 255, 0, 0.08);
+  border-color: rgba(204, 255, 0, 0.45);
+}
+
+#process-card-1 .process-card-back h3 {
+  color: var(--color-lime);
+}
+
+.process-outro h2 {
+  margin: 0 auto;
+  max-width: 18ch;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (max-width: 639px) {
+  .process-outro {
+    padding: 3rem 2rem;
+  }
+
+  .process-sticky {
+    height: max-content;
+    padding: 2.5rem 1.25rem;
+  }
+
+  .process-sticky-header {
+    margin-bottom: 2rem;
+  }
+
+  .process-sticky-header h2 {
+    white-space: normal;
+  }
+
+  .process-card-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 1.25rem;
+    transform: none;
+  }
+
+  .process-card {
+    width: 100%;
+    max-width: 25rem;
+    margin: 0 auto;
+    border-radius: 1.5rem !important;
+  }
+
+  #process-card-0,
+  #process-card-1,
+  #process-card-2,
+  .process-card-back {
+    transform: none;
   }
 }

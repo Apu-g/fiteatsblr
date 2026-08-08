@@ -55,15 +55,19 @@ function Label({ htmlFor, children, error }) {
   );
 }
 
-function OptionCards({ options, value, onSelect, columns = 2, showHint = false }) {
-  const colClass =
+function OptionCards({ options, value, onSelect, columns = 2, mobileColumns = 1, compact = false, showHint = false }) {
+  const smColClass =
     columns === 3
       ? "sm:grid-cols-3"
       : columns === 1
         ? "sm:grid-cols-1"
         : "sm:grid-cols-2";
+        
+  const baseColClass = 
+    mobileColumns === 3 ? "grid-cols-3" : mobileColumns === 2 ? "grid-cols-2" : "grid-cols-1";
+
   return (
-    <div className={`grid grid-cols-1 gap-3 ${colClass}`}>
+    <div className={`grid gap-3 sm:gap-4 ${baseColClass} ${smColClass}`}>
       {options.map((opt) => {
         const selected = value === opt.label || value === opt.value;
         return (
@@ -71,33 +75,37 @@ function OptionCards({ options, value, onSelect, columns = 2, showHint = false }
             key={opt.label}
             type="button"
             onClick={() => onSelect(opt.label)}
-            className={`flex items-center gap-4 rounded-2xl border-2 p-4 text-left transition-all duration-200 ${
+            className={`flex items-center text-left transition-all duration-200 border-2 rounded-2xl ${
+              compact ? "gap-2.5 p-3 sm:gap-4 sm:p-4" : "gap-4 p-4"
+            } ${
               selected
                 ? "border-lime bg-lime/10"
                 : "border-white/10 bg-white/5 hover:border-white/25"
             }`}
           >
             <span
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                selected ? "bg-lime text-ink" : "bg-white/10 text-lime"
-              }`}
+              className={`flex shrink-0 items-center justify-center rounded-xl transition-colors ${
+                compact ? "h-10 w-10 sm:h-12 sm:w-12" : "h-12 w-12"
+              } ${selected ? "bg-lime text-ink" : "bg-white/10 text-lime"}`}
             >
-              {opt.icon ? <OptionIcon name={opt.icon} /> : null}
+              {opt.icon ? <OptionIcon name={opt.icon} className={compact ? "scale-75 sm:scale-100" : ""} /> : null}
             </span>
-            <span className="flex-1">
+            <span className="flex-1 min-w-0">
               <span
-                className={`block font-semibold ${selected ? "text-lime" : "text-white"}`}
+                className={`block font-semibold truncate ${compact ? "text-sm sm:text-base" : ""} ${
+                  selected ? "text-lime" : "text-white"
+                }`}
               >
                 {opt.label}
               </span>
               {showHint && opt.hint ? (
-                <span className="mt-0.5 block text-xs text-white/45">
+                <span className={`mt-0.5 block text-xs text-white/45 ${compact ? "truncate" : ""}`}>
                   {opt.hint}
                 </span>
               ) : null}
             </span>
             <span
-              className={`flex h-6 w-6 items-center justify-center rounded-full border-2 transition-colors ${
+              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                 selected ? "border-lime bg-lime text-ink" : "border-white/25"
               }`}
             >
@@ -413,6 +421,7 @@ export default function OnboardingForm() {
                           value={values.gender}
                           onSelect={(l) => selectOption("gender", l)}
                           columns={3}
+                          mobileColumns={1}
                         />
                         <FieldError error={errors.gender} />
                       </div>
@@ -492,6 +501,8 @@ export default function OnboardingForm() {
                           value={values.foodPreference}
                           onSelect={(l) => selectOption("foodPreference", l)}
                           columns={2}
+                          mobileColumns={2}
+                          compact={true}
                         />
                         <FieldError error={errors.foodPreference} />
                       </div>

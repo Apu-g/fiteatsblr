@@ -1,107 +1,167 @@
-import Reveal from "@/components/ui/Reveal";
-import SectionHeader from "@/components/ui/SectionHeader";
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/components/ui/Button";
-import { CheckIcon, SparkIcon } from "@/components/icons";
+import { CheckIcon } from "@/components/icons";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
     num: "01",
     title: "Body Metric & Goal Audit",
-    text: "Submit your basic details (age, height, weight, and food preferences). Our coaches analyze your metabolic rates, calculate target calories/macros, and assess your current challenges.",
-    highlight: false,
-    benefits: ["BMR & TDEE target calculation", "Obstacle identification", "No credit card or payment required"],
+    text: "We analyze your body, metabolism and goals before planning anything.",
+    image:
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80",
+    benefits: ["BMR & TDEE calculation", "Obstacle identification", "No credit card required"],
   },
   {
     num: "02",
-    title: "1-on-1 Coach Consultation",
-    text: "We reach out directly via your preferred contact method (WhatsApp or Call). We discuss your answers, address your specific fitness questions, and align on a sustainable plan that fits your work/life routine.",
+    title: "1-on-1 Consultation",
+    text: "A direct call to align your plan around your routine and lifestyle.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
     highlight: true,
-    benefits: ["Direct WhatsApp/Phone consultation", "Discussion of injuries or medical history", "Real-world routine alignment"],
+    benefits: ["Direct WhatsApp / phone call", "Injury / history discussion", "Routine alignment"],
   },
   {
     num: "03",
-    title: "Your Custom Meal Roadmap",
-    text: "Get your personalized nutrition roadmap built entirely around normal Indian home food like dal, roti, paneer, and eggs. No extreme diets, no expensive supplements—just real food made to work for you.",
-    highlight: false,
-    benefits: ["Customized calorie & macro plan", "Familiar, budget-friendly Indian meals", "Ongoing weekly target adjustments"],
+    title: "Custom Meal Roadmap",
+    text: "A nutrition plan built on real Indian home food you already eat.",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+    benefits: ["Custom macro & calorie plan", "Budget-friendly meals", "Weekly adjustments"],
   },
 ];
 
 export default function Process() {
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    let ctx;
+
+    function init() {
+      ctx = gsap.context(() => {
+        const section = wrapperRef.current.querySelector(".process-sticky");
+        const cardContainer = wrapperRef.current.querySelector(
+          ".process-card-container"
+        );
+        const cards = gsap.utils.toArray(".process-card");
+
+        const rootFont = parseFloat(
+          getComputedStyle(document.documentElement).fontSize
+        ) || 16;
+        // rem-based scroll distance — generous but not endless
+        const pinDistance = 72 * rootFont;
+
+        const mm = gsap.matchMedia();
+
+        mm.add("(max-width: 639px)", () => {
+          gsap.set([".process-card", ".process-card-container"], {
+            clearProps: "all",
+          });
+          return {};
+        });
+
+        mm.add("(min-width: 640px)", () => {
+          gsap.set(cardContainer, { width: "72%", gap: "1.25rem" });
+          gsap.set(cards, { rotationY: 0 });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: () => `+=${pinDistance}px`,
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              // flip cards early and smoothly — completes by mid-scroll
+              const base = gsap.utils.clamp(
+                0,
+                1,
+                gsap.utils.mapRange(0.15, 0.5, 0, 1, progress)
+              );
+              cards.forEach((card, i) => {
+                const local = gsap.utils.clamp(0, 1, base - i * 0.08);
+                gsap.set(card, { rotationY: local * 180 });
+              });
+            },
+          });
+        });
+      }, wrapperRef);
+    }
+
+    init();
+
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", onLoad);
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 400);
+
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(refreshTimer);
+      if (ctx) ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
   return (
-    <section id="process" className="relative overflow-hidden bg-ink">
-      <div className="glow-blob -bottom-40 right-0 h-[26rem] w-[26rem] bg-lime/20" />
-      <div className="glow-blob -top-20 left-10 h-[22rem] w-[22rem] bg-[#3dff8f]/10" />
-      
-      <div className="container-app relative section-pad">
-        <SectionHeader
-          dark
-          eyebrow="The Process"
-          title="From information to transformation"
-          description="We don't sell generic plans. Here is exactly how we work with you to design a sustainable roadmap for your body and lifestyle."
-        />
+    <div ref={wrapperRef} id="process" className="bg-ink text-white">
+      {/* One screen: header always visible + symmetric glass cards */}
+      <section className="process-sticky">
+        <div className="process-sticky-header">
+          <span className="process-eyebrow">The Process</span>
+          <h2 className="heading">
+            From information
+            <br />
+            to transformation
+          </h2>
+          <p className="process-intro-desc">
+            We don&apos;t sell generic plans. Here is exactly how we work with
+            you to design a sustainable roadmap for your body and lifestyle.
+          </p>
+        </div>
 
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-3">
+        <div className="process-card-container">
           {steps.map((step, i) => (
-            <Reveal key={step.num} delay={0.12 * i}>
-              <div
-                className={`card-lift relative flex h-full flex-col rounded-[2rem] border-2 p-8 sm:p-10 ${
-                  step.highlight
-                    ? "border-lime bg-dark shadow-[0_20px_60px_-20px_rgba(204,255,0,0.25)]"
-                    : "glass-dark border-white/10"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`heading text-4xl ${
-                      step.highlight ? "text-lime" : "text-white/20"
-                    }`}
-                  >
-                    {step.num}
-                  </span>
-                  {step.highlight ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-lime/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-lime">
-                      <SparkIcon className="h-3 w-3" /> Direct Call
-                    </span>
-                  ) : null}
-                </div>
-
-                <h3 className="heading mt-6 text-xl text-white sm:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/50">
-                  {step.text}
-                </p>
-
-                <ul className="mt-8 flex flex-col gap-3.5 border-t border-white/10 pt-6">
+            <div className="process-card" id={`process-card-${i}`} key={step.num}>
+              <div className="process-card-front">
+                <img src={step.image} alt={step.title} />
+              </div>
+              <div className="process-card-back">
+                <span className="process-card-num">( {step.num} )</span>
+                <h3 className="heading">{step.title}</h3>
+                <p className="process-card-text">{step.text}</p>
+                <ul className="process-card-list">
                   {step.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-3">
-                      <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-                          step.highlight ? "bg-lime text-ink" : "bg-white/10 text-lime"
-                        }`}
-                      >
-                        <CheckIcon className="h-3.5 w-3.5" />
+                    <li key={b}>
+                      <span className="process-card-check">
+                        <CheckIcon className="h-3 w-3" />
                       </span>
-                      <span className="text-sm leading-relaxed text-white/75">
-                        {b}
-                      </span>
+                      <span>{b}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
+      </section>
 
-        <div className="mt-14 text-center">
-          <Reveal delay={0.3}>
-            <Button href="#onboarding" size="lg">
-              Start Your Free Assessment
-            </Button>
-          </Reveal>
+      {/* Outro */}
+      <section className="process-outro">
+        <div>
+          <h2 className="heading">
+            Every transformation starts with one decision.
+          </h2>
+          <Button href="#onboarding" size="lg" className="mt-8">
+            Start Your Free Assessment
+          </Button>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
