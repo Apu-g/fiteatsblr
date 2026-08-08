@@ -9,7 +9,7 @@ export default function Preloader() {
           <div className="flex items-center gap-4">
             <img
               src="/logo.png"
-              alt="FitEats Logo"
+              alt="FitEatsBLR Logo"
               className="preloader-logo-img h-20 w-20 rounded-2xl object-contain"
             />
             <h1 id="js-preloader-logo">
@@ -30,7 +30,7 @@ export default function Preloader() {
           <p id="js-preloader-footer">
             <span className="line-mask">
               <span className="reveal-line">
-                Meet FitEats®—personalized and sustainable
+                Meet FitEatsBLR®—personalized and sustainable
               </span>
             </span>
             <span className="line-mask">

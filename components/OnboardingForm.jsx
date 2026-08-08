@@ -308,7 +308,7 @@ export default function OnboardingForm() {
           <div className="mt-10 hidden items-center gap-4 rounded-2xl glass-dark p-5 lg:flex">
             <Image
               src="/logo.png"
-              alt="FitEats"
+              alt="FitEatsBLR"
               width={48}
               height={48}
               className="rounded-xl"

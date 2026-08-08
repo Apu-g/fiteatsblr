@@ -1,5 +1,5 @@
 /**
- * FitEats Transform — Google Apps Script lead handler.
+ * FitEatsBLR Transform — Google Apps Script lead handler.
  *
  * Setup:
  * 1. Create a new Google Sheet with headers (row 1):

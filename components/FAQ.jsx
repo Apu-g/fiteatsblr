@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "Do I need supplements?",
-    a: "No. FitEats is built entirely around real food. No powders, pills or protein shakes required — we make your normal meals work harder for you.",
+    a: "No. FitEatsBLR is built entirely around real food. No powders, pills or protein shakes required — we make your normal meals work harder for you.",
   },
 ];
 

@@ -24,13 +24,13 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
-                alt="FitEats logo"
+                alt="FitEatsBLR logo"
                 width={44}
                 height={44}
                 className="rounded-xl"
               />
               <span className="heading text-xl text-white">
-                Fit<span className="text-lime">Eats</span>
+                FitEats<span className="text-lime">BLR</span>
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
@@ -132,7 +132,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} FitEats BLR. All rights reserved.
+            © {new Date().getFullYear()} FitEatsBLR. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-white/40 transition-colors hover:text-lime">

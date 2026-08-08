@@ -10,7 +10,7 @@ const testimonials = [
     name: "Priya S.",
     role: "Lost 12 kg in 4 months",
     img: "https://randomuser.me/api/portraits/women/44.jpg",
-    text: "I never thought I could lose weight eating dal and roti. FitEats made my home food work for my goal — and the weekly check-ins kept me honest.",
+    text: "I never thought I could lose weight eating dal and roti. FitEatsBLR made my home food work for my goal — and the weekly check-ins kept me honest.",
   },
   {
     name: "Rahul K.",
@@ -28,7 +28,7 @@ const testimonials = [
     name: "Vikram R.",
     role: "Lost 18 kg in 6 months",
     img: "https://randomuser.me/api/portraits/men/75.jpg",
-    text: "I travel a lot for work. FitEats taught me how to order anywhere and still hit my targets. Down 18 kilos and my BP is normal now.",
+    text: "I travel a lot for work. FitEatsBLR taught me how to order anywhere and still hit my targets. Down 18 kilos and my BP is normal now.",
   },
   {
     name: "Sneha T.",

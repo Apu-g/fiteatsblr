@@ -109,7 +109,7 @@ export function YoutubeIcon({ className = "h-5 w-5" }) {
   );
 }
 
-/* ---------- Why FitEats feature icons ---------- */
+/* ---------- Why FitEatsBLR feature icons ---------- */
 
 export function MacroIcon({ className = "h-8 w-8" }) {
   return (

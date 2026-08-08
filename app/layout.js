@@ -15,14 +15,14 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "FitEats Transform | Eat Better. Train Smarter. Transform Faster.",
+  title: "FitEatsBLR Transform | Eat Better. Train Smarter. Transform Faster.",
   description:
-    "Premium personalized Indian meal plans and coaching from FitEats BLR. Lose fat, build muscle and transform your body — no supplements required.",
-  metadataBase: new URL("https://fiteats.com"),
+    "Premium personalized Indian meal plans and coaching from FitEatsBLR. Lose fat, build muscle and transform your body — no supplements required.",
+  metadataBase: new URL("https://fiteatsblr.com"),
   openGraph: {
-    title: "FitEats Transform",
+    title: "FitEatsBLR Transform",
     description:
-      "Eat Better. Train Smarter. Transform Faster. Personalized meal plans by FitEats BLR.",
+      "Eat Better. Train Smarter. Transform Faster. Personalized meal plans by FitEatsBLR.",
     type: "website",
   },
 };

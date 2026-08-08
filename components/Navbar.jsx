@@ -37,14 +37,14 @@ export default function Navbar() {
         <a href="#top" className="flex items-center gap-3" onClick={close}>
           <Image
             src="/logo.png"
-            alt="FitEats logo"
+            alt="FitEatsBLR logo"
             width={48}
             height={48}
             className="rounded-2xl"
             priority
           />
           <span className="heading text-2xl text-white">
-            Fit<span className="text-lime">Eats</span>
+            FitEats<span className="text-lime">BLR</span>
           </span>
         </a>
 

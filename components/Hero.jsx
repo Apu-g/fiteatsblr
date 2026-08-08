@@ -268,7 +268,7 @@ export default function Hero() {
             <div className="mobile-fallback-custom">
               <Image
                 src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80"
-                alt="FitEats Gym Workout"
+                alt="FitEatsBLR Gym Workout"
                 fill
                 priority
                 className="object-cover"
@@ -288,7 +288,7 @@ export default function Hero() {
 
           <div className="hero-copy-wrap-custom">
             <div className="hero-copy-inner-custom">
-              <h1 id="js-hero-title">FitEats®</h1>
+              <h1 id="js-hero-title">FitEatsBLR®</h1>
 
               <div className="hero-bottom-custom">
                 <h2 id="js-hero-subtitle">

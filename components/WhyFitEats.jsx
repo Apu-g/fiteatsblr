@@ -47,7 +47,7 @@ export default function WhyFitEats() {
     <section id="why" className="bg-surface">
       <div className="container-app section-pad">
         <SectionHeader
-          eyebrow="Why FitEats"
+          eyebrow="Why FitEatsBLR"
           title="Nutrition that actually fits your life"
           description="We build your plan around Indian food, your schedule and your budget — so consistency finally feels easy."
         />

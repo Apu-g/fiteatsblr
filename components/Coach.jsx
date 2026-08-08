@@ -20,7 +20,7 @@ export default function Coach() {
             <div className="relative overflow-hidden rounded-[2rem] bg-dark">
               <Image
                 src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=80"
-                alt="FitEats head coach"
+                alt="FitEatsBLR head coach"
                 width={560}
                 height={640}
                 className="h-[26rem] w-full object-cover sm:h-[32rem]"
@@ -28,8 +28,8 @@ export default function Coach() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5">
-                <p className="heading text-xl text-white">Arjun Mehta</p>
-                <p className="text-sm text-lime">Head Coach · FitEats BLR</p>
+                <p className="heading text-xl text-white">&nbsp;</p>
+                <p className="text-sm text-lime">Head Coach · FitEatsBLR</p>
               </div>
             </div>
           </div>
