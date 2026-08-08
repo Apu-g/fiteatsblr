@@ -6,11 +6,11 @@ export default function Preloader() {
       <div className="preloader-progress">
         <div className="preloader-progress-bar"></div>
         <div className="preloader-logo">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center">
             <img
               src="/logo.png"
               alt="FitEatsBLR Logo"
-              className="preloader-logo-img h-20 w-20 rounded-2xl object-contain"
+              className="preloader-logo-img rounded-2xl object-contain"
             />
             <h1 id="js-preloader-logo">
               {[...LOGO_TEXT].map((ch, i) => (

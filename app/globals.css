@@ -218,8 +218,8 @@ body {
   top: 50%;
   left: 50%;
   width: min(72vw, 980px);
-  height: min(24vw, 260px);
-  min-height: 180px;
+  height: min(22vw, 240px);
+  min-height: 140px;
   transform: translate(-50%, -50%) scale(0.86);
   border-radius: 999px;
   background-color: var(--color-dark);
@@ -244,14 +244,22 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
   mix-blend-mode: difference;
   z-index: 3;
+}
+
+.preloader-logo-img {
+  width: clamp(2.5rem, 6vw, 5rem);
+  height: clamp(2.5rem, 6vw, 5rem);
+  flex-shrink: 0;
 }
 
 .preloader-logo h1 {
   position: relative;
   color: #ffffff;
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: clamp(2.4rem, 4.6vw, 5rem);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
@@ -297,6 +305,7 @@ body {
 .hero-section-custom {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   padding: 0.5rem;
   background: var(--color-ink);
 }
@@ -370,7 +379,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 0.95;
-  margin-top: 5rem;
+  margin-top: clamp(5rem, 12vh, 7rem);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -467,9 +476,10 @@ body {
   }
 
   .hero-copy-inner-custom h1 {
-    font-size: clamp(3.2rem, 10vw, 4.5rem);
+    font-size: clamp(2.6rem, 11vw, 4.5rem);
     text-align: left;
-    margin-top: 4rem;
+    margin-top: clamp(5.25rem, 12vh, 7rem);
+    max-width: 100%;
   }
 
   .hero-bottom-custom {
@@ -478,14 +488,24 @@ body {
   }
 
   .preloader-progress {
-    width: 82vw;
-    height: 26vw;
-    min-height: 140px;
+    width: min(92vw, 553px);
+    height: clamp(4rem, 20vw, 10.6rem);
+    min-height: 0;
     transform: translate(-50%, -50%) scale(0.88);
   }
 
+  .preloader-logo {
+    padding-inline: clamp(1rem, 6vw, 1.5rem);
+    gap: clamp(0.5rem, 3vw, 0.75rem);
+  }
+
+  .preloader-logo-img {
+    width: clamp(2rem, 9vw, 2.5rem);
+    height: clamp(2rem, 9vw, 2.5rem);
+  }
+
   .preloader-logo h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.4rem, 6.5vw, 2.4rem);
   }
 
   .preloader-mask {
@@ -499,6 +519,11 @@ body {
 
   .preloader-footer {
     width: 80%;
+    bottom: 2.5rem;
+  }
+
+  .preloader-footer p {
+    font-size: 0.8rem;
   }
 }
 
