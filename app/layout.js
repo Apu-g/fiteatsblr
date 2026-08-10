@@ -1,5 +1,6 @@
 import { Syne, Inter } from "next/font/google";
 import Script from "next/script";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import "./globals.css";
 
 const syne = Syne({
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
           }}
         />
         {children}
+        <WhatsAppFloat />
         {gaId ? (
           <>
             <Script
