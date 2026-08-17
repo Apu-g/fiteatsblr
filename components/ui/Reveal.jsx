@@ -7,7 +7,7 @@ export default function Reveal({
   delay = 0,
   y = 26,
   x = 0,
-  once = true,
+  once = false,
   className,
 }) {
   const prefersReduced = useReducedMotion();
@@ -16,7 +16,7 @@ export default function Reveal({
     <motion.div
       initial={{ opacity: 0, y: prefersReduced ? 0 : y, x: prefersReduced ? 0 : x }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, margin: "-40px" }}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >

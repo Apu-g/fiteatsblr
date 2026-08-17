@@ -18,7 +18,6 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export default function ScrollReveal() {
   const sectionRef = useRef(null);
-  const areOutroLinesRevealed = useRef(false);
 
   useEffect(() => {
     let ctx;
@@ -40,13 +39,73 @@ export default function ScrollReveal() {
         // Set initial state for outro lines
         gsap.set(outroLines, { y: "100%" });
 
+        // Parallax on foreground image
+        const fgImg = section.querySelector(".sr-fg-img");
+        if (fgImg) {
+          gsap.fromTo(
+            fgImg,
+            { yPercent: -15, scale: 1.15 },
+            {
+              yPercent: 15,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        // Parallax on outro images
+        const outroImgTopEl = outroImgTop?.querySelector("img");
+        const outroImgBottomEl = outroImgBottom?.querySelector("img");
+
+        if (outroImgTopEl) {
+          gsap.fromTo(
+            outroImgTopEl,
+            { yPercent: -10, scale: 1.1 },
+            {
+              yPercent: 10,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        if (outroImgBottomEl) {
+          gsap.fromTo(
+            outroImgBottomEl,
+            { yPercent: -10, scale: 1.1 },
+            {
+              yPercent: 10,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+
         ScrollTrigger.create({
           trigger: section,
           start: "top top",
-          end: `+=${window.innerHeight * 5}px`,
+          end: `+=${window.innerWidth < 768 ? window.innerHeight * 1.2 : window.innerHeight * 1.8}px`,
           pin: true,
           pinSpacing: true,
-          scrub: 1,
+          scrub: 0.8,
           onUpdate: (self) => {
             const p = self.progress;
 
@@ -86,24 +145,11 @@ export default function ScrollReveal() {
               clipPath: `polygon(0% ${gsap.utils.interpolate(100, 0, p4)}%, 100% ${gsap.utils.interpolate(100, 0, p4)}%, 100% 100%, 0% 100%)`,
             });
 
-            // Phase 5: outro headline lines
-            if (p >= 0.9 && !areOutroLinesRevealed.current) {
-              areOutroLinesRevealed.current = true;
-              gsap.to(outroLines, {
-                y: "0%",
-                duration: 0.75,
-                stagger: 0.1,
-                ease: "power3.out",
-              });
-            } else if (p < 0.9 && areOutroLinesRevealed.current) {
-              areOutroLinesRevealed.current = false;
-              gsap.to(outroLines, {
-                y: "100%",
-                duration: 0.25,
-                stagger: -0.05,
-                ease: "power3.out",
-              });
-            }
+            // Phase 5: outro headline lines (bidirectional via scrub)
+            const p5 = gsap.utils.clamp(0, 1, (p - 0.85) / 0.15);
+            gsap.set(outroLines, {
+              y: `${gsap.utils.interpolate(100, 0, p5)}%`,
+            });
           },
         });
       }, sectionRef);
@@ -131,7 +177,7 @@ export default function ScrollReveal() {
         <div className="sr-fg-header">
           <p className="sr-fg-eyebrow">Real food. Real results.</p>
           <h2>
-            Your transformation<br />begins at the table.
+            From information<br />to transformation.
           </h2>
         </div>
       </div>

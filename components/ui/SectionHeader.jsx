@@ -9,7 +9,7 @@ export default function SectionHeader({
 }) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   return (
-    <Reveal className={`max-w-2xl ${alignment} mb-14 md:mb-16`}>
+    <Reveal className={`max-w-2xl ${alignment} mb-10 sm:mb-14 md:mb-16`}>
       {eyebrow ? (
         <span
           className={`mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ${

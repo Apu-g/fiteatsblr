@@ -18,8 +18,8 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="bg-ink">
-      <div className="container-app border-t border-white/10 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+      <div className="container-app border-t border-white/10 py-10 sm:py-14">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-3">
               <Image
@@ -122,7 +122,7 @@ export default function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/65">
+              <li className="flex items-start gap-3 text-sm text-white/65 break-words">
                 <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
                 {site.address}
               </li>

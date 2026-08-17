@@ -5,93 +5,89 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/components/ui/Button";
 import { CheckIcon } from "@/components/icons";
+import ScrollBlurUp from "@/components/ui/ScrollBlurUp";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
     num: "01",
-    title: "Body Metric & Goal Audit",
-    text: "We analyze your body, metabolism and goals before planning anything.",
+    title: "Fat Loss or Healthy Build",
+    text: "We understand your body, lifestyle and goals before planning anything.",
     image:
-      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80",
-    benefits: ["BMR & TDEE calculation", "Obstacle identification", "No credit card required"],
+      "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&q=80",
+    benefits: ["Goal identification", "Lifestyle assessment", "Medical history review"],
   },
   {
     num: "02",
-    title: "1-on-1 Consultation",
-    text: "A direct call to align your plan around your routine and lifestyle.",
+    title: "Custom Meal & Routine Plan",
+    text: "A personalized plan built around your routine, not the other way around.",
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80",
     highlight: true,
-    benefits: ["Direct WhatsApp / phone call", "Injury / history discussion", "Routine alignment"],
+    benefits: ["Customized meal plan", "Activity-based workouts", "Routine alignment"],
   },
   {
     num: "03",
-    title: "Custom Meal Roadmap",
-    text: "A nutrition plan built on real Indian home food you already eat.",
+    title: "Cardio, Sleep & Stress Habits",
+    text: "Build sustainable habits for cardio, sleep quality and stress management.",
     image:
-      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
-    benefits: ["Custom macro & calorie plan", "Budget-friendly meals", "Weekly adjustments"],
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
+    benefits: ["Cardio activity plan", "Sleep & recovery guide", "Stress management habits"],
   },
 ];
 
 export default function Process() {
-  const wrapperRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     let ctx;
 
     function init() {
       ctx = gsap.context(() => {
-        const section = wrapperRef.current.querySelector(".process-sticky");
-        const cardContainer = wrapperRef.current.querySelector(
-          ".process-card-container"
-        );
-        const cards = gsap.utils.toArray(".process-card");
+        const cards = gsap.utils.toArray(".process-step-card");
 
-        const rootFont = parseFloat(
-          getComputedStyle(document.documentElement).fontSize
-        ) || 16;
-        // rem-based scroll distance — generous but not endless
-        const pinDistance = 72 * rootFont;
+        cards.forEach((card, i) => {
+          // Card entrance animation
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 60, filter: "blur(8px)" },
+            {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 40%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
 
-        const mm = gsap.matchMedia();
-
-        mm.add("(max-width: 639px)", () => {
-          gsap.set([".process-card", ".process-card-container"], {
-            clearProps: "all",
-          });
-          return {};
+          // Parallax on card background image
+          const bgImg = card.querySelector(".process-step-bg img");
+          if (bgImg) {
+            gsap.fromTo(
+              bgImg,
+              { yPercent: -8, scale: 1.12 },
+              {
+                yPercent: 8,
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          }
         });
-
-        mm.add("(min-width: 640px)", () => {
-          gsap.set(cardContainer, { width: "72%", gap: "1.25rem" });
-          gsap.set(cards, { rotationY: 0 });
-
-          ScrollTrigger.create({
-            trigger: section,
-            start: "top top",
-            end: () => `+=${pinDistance}px`,
-            scrub: 1,
-            pin: true,
-            pinSpacing: true,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              // flip cards early and smoothly — completes by mid-scroll
-              const base = gsap.utils.clamp(
-                0,
-                1,
-                gsap.utils.mapRange(0.15, 0.5, 0, 1, progress)
-              );
-              cards.forEach((card, i) => {
-                const local = gsap.utils.clamp(0, 1, base - i * 0.08);
-                gsap.set(card, { rotationY: local * 180 });
-              });
-            },
-          });
-        });
-      }, wrapperRef);
+      }, sectionRef);
     }
 
     init();
@@ -109,58 +105,76 @@ export default function Process() {
   }, []);
 
   return (
-    <div ref={wrapperRef} id="process" className="bg-ink text-white">
-      {/* One screen: header always visible + symmetric glass cards */}
-      <section className="process-sticky">
-        <div className="process-sticky-header">
+    <div ref={sectionRef} id="process" className="bg-ink text-white">
+      {/* Header — always visible, scroll-animated */}
+      <section className="process-header-section">
+        <ScrollBlurUp>
           <span className="process-eyebrow">The Process</span>
-          <h2 className="heading">
+          <h2 className="heading process-heading">
             From information
             <br />
             to transformation
           </h2>
           <p className="process-intro-desc">
             We don&apos;t sell generic plans. Here is exactly how we work with
-            you to design a sustainable roadmap for your body and lifestyle.
+            you to build a sustainable roadmap for your body, lifestyle and goals.
           </p>
-        </div>
+        </ScrollBlurUp>
+      </section>
 
-        <div className="process-card-container">
-          {steps.map((step, i) => (
-            <div className="process-card" id={`process-card-${i}`} key={step.num}>
-              <div className="process-card-front">
-                <img src={step.image} alt={step.title} />
+      {/* Cards — scroll-driven blur slide-up, no flip */}
+      <section className="process-cards-section">
+        <div className="container-app">
+          <div className="process-cards-grid">
+            {steps.map((step, i) => (
+              <div
+                className={`process-step-card ${step.highlight ? "process-step-card--highlight" : ""}`}
+                key={step.num}
+              >
+                {/* Blurred background image */}
+                <div className="process-step-bg">
+                  <img src={step.image} alt={step.title} />
+                  <div className="process-step-bg-overlay" />
+                </div>
+
+                {/* Content on top */}
+                <div className="process-step-content">
+                  <span className="process-card-num">{step.num}</span>
+                  <h3 className="heading process-step-title">{step.title}</h3>
+                  <p className="process-step-text">{step.text}</p>
+                  <ul className="process-step-list">
+                    {step.benefits.map((b) => (
+                      <li key={b}>
+                        <span className="process-card-check">
+                          <CheckIcon className="h-3 w-3" />
+                        </span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="process-card-back">
-                <span className="process-card-num">( {step.num} )</span>
-                <h3 className="heading">{step.title}</h3>
-                <p className="process-card-text">{step.text}</p>
-                <ul className="process-card-list">
-                  {step.benefits.map((b) => (
-                    <li key={b}>
-                      <span className="process-card-check">
-                        <CheckIcon className="h-3 w-3" />
-                      </span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Outro */}
       <section className="process-outro">
-        <div>
-          <h2 className="heading">
-            Every transformation starts with one decision.
-          </h2>
-          <Button href="#onboarding" size="lg" className="mt-8">
-            Start Your Free Assessment
-          </Button>
-        </div>
+        <ScrollBlurUp>
+          <div>
+            <h2 className="heading">
+              Every transformation starts with one decision.
+            </h2>
+            <p className="mt-4 text-base text-white/50 max-w-md mx-auto">
+              We don&apos;t sell generic plans. Here is exactly how we work with
+              you to build a sustainable roadmap for your body, lifestyle and goals.
+            </p>
+            <Button href="#onboarding" size="lg" className="mt-8">
+              Start Your Free Assessment
+            </Button>
+          </div>
+        </ScrollBlurUp>
       </section>
     </div>
   );

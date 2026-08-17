@@ -1,4 +1,4 @@
-import Reveal from "@/components/ui/Reveal";
+import ScrollBlurUp from "@/components/ui/ScrollBlurUp";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
   MacroIcon,
@@ -12,8 +12,8 @@ import {
 const features = [
   {
     icon: MacroIcon,
-    title: "Macro Tracking",
-    text: "Every meal is weighed against your macros so protein, carbs and fats stay on target — without the math.",
+    title: "Smart Nutrition Tracking",
+    text: "Every meal is planned around your macros so protein, carbs and fats stay on target — without the math.",
   },
   {
     icon: MealIcon,
@@ -46,15 +46,17 @@ export default function WhyFitEats() {
   return (
     <section id="why" className="bg-surface">
       <div className="container-app section-pad">
-        <SectionHeader
-          eyebrow="Why FitEatsBLR"
-          title="Nutrition that actually fits your life"
-          description="We build your plan around Indian food, your schedule and your budget — so consistency finally feels easy."
-        />
+        <ScrollBlurUp>
+          <SectionHeader
+            eyebrow="Why FitEatsBLR"
+            title="Nutrition that actually fits your life"
+            description="We don't sell generic plans. We design fancy, customized diets around Indian food, your schedule and your budget — so consistency finally feels easy."
+          />
+        </ScrollBlurUp>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
-            <Reveal key={f.title} delay={0.06 * (i % 3)}>
-              <div className="card-soft card-lift group h-full rounded-3xl border-2 border-transparent bg-white p-8 hover:border-lime">
+            <ScrollBlurUp key={f.title} delay={0.08 * (i % 3)} y={45} blur={10}>
+              <div className="card-soft card-lift group h-full rounded-3xl border-2 border-transparent bg-white p-5 sm:p-8 hover:border-lime">
                 <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-ink text-lime transition-colors duration-300 group-hover:bg-lime group-hover:text-ink">
                   <f.icon />
                 </span>
@@ -63,7 +65,7 @@ export default function WhyFitEats() {
                   {f.text}
                 </p>
               </div>
-            </Reveal>
+            </ScrollBlurUp>
           ))}
         </div>
       </div>

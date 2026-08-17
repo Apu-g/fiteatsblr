@@ -12,7 +12,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const heroHeight = window.innerHeight;
+      const threshold = heroHeight * 0.3;
+      setScrolled(window.scrollY > threshold);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -35,17 +39,34 @@ export default function Navbar() {
     >
       <nav className="container-app flex h-20 items-center justify-between">
         <a href="#top" className="flex items-center gap-3" onClick={close}>
-          <Image
-            src="/logo.png"
-            alt="FitEatsBLR logo"
-            width={48}
-            height={48}
-            className="rounded-2xl"
-            priority
-          />
-          <span className="heading text-2xl text-white">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{
+              opacity: scrolled ? 1 : 0,
+              scale: scrolled ? 1 : 0.8,
+            }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="/logo.png"
+              alt="FitEatsBLR logo"
+              width={56}
+              height={56}
+              className="rounded-2xl navbar-logo-glow"
+              priority
+            />
+          </motion.div>
+          <motion.span
+            initial={{ opacity: 0, x: -8 }}
+            animate={{
+              opacity: scrolled ? 1 : 0,
+              x: scrolled ? 0 : -8,
+            }}
+            transition={{ duration: 0.4, delay: scrolled ? 0.1 : 0, ease: [0.22, 1, 0.36, 1] }}
+            className="heading text-2xl text-white"
+          >
             FitEats<span className="text-lime">BLR</span>
-          </span>
+          </motion.span>
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">

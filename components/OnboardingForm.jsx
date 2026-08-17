@@ -128,7 +128,7 @@ function ChipMultiSelect({ options, value, onToggle }) {
             key={opt.value}
             type="button"
             onClick={() => onToggle(opt.value)}
-            className={`flex items-center gap-2 rounded-full border-2 px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+            className={`flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 sm:px-5 sm:py-2.5 ${
               selected
                 ? "border-lime bg-lime text-ink"
                 : "border-white/15 bg-white/5 text-white/70 hover:border-white/30"
@@ -278,7 +278,7 @@ export default function OnboardingForm() {
       <div className="glow-blob -right-32 top-24 h-96 w-96 bg-lime/30" />
       <div className="glow-blob -left-24 bottom-0 h-80 w-80 bg-[#3dff8f]/25" />
 
-      <div className="container-app relative section-pad grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="container-app relative section-pad grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
         {/* Trust column */}
         <div className="lg:sticky lg:top-28">
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-lime">
@@ -425,7 +425,7 @@ export default function OnboardingForm() {
                         />
                         <FieldError error={errors.gender} />
                       </div>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-3 sm:gap-4">
                         <div>
                           <Label htmlFor="age" error={errors.age}>Age</Label>
                           <input
@@ -445,7 +445,7 @@ export default function OnboardingForm() {
                           <FieldError error={errors.age} />
                         </div>
                         <div>
-                          <Label htmlFor="heightCm" error={errors.heightCm}>Height (cm)</Label>
+                          <Label htmlFor="heightCm" error={errors.heightCm}>Ht (cm)</Label>
                           <input
                             id="heightCm"
                             type="number"
@@ -461,7 +461,7 @@ export default function OnboardingForm() {
                           <FieldError error={errors.heightCm} />
                         </div>
                         <div>
-                          <Label htmlFor="weightKg" error={errors.weightKg}>Weight (kg)</Label>
+                          <Label htmlFor="weightKg" error={errors.weightKg}>Wt (kg)</Label>
                           <input
                             id="weightKg"
                             type="number"
@@ -615,12 +615,12 @@ export default function OnboardingForm() {
             </AnimatePresence>
 
             {/* Navigation */}
-            <div className="mt-9 flex items-center justify-between gap-4">
+            <div className="mt-9 flex items-center justify-between gap-3">
               {step > 0 ? (
                 <button
                   type="button"
                   onClick={goBack}
-                  className="rounded-xl border border-white/15 px-6 py-3.5 text-sm font-semibold text-white/70 transition-colors hover:border-white/35 hover:text-white"
+                  className="rounded-xl border border-white/15 px-4 py-3 text-sm font-semibold text-white/70 transition-colors hover:border-white/35 hover:text-white sm:px-6 sm:py-3.5"
                 >
                   Back
                 </button>
@@ -631,7 +631,7 @@ export default function OnboardingForm() {
                 type="button"
                 onClick={goNext}
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime px-8 py-4 text-base font-semibold text-ink transition-all duration-300 hover:bg-[#d9ff45] hover:shadow-[0_10px_40px_-10px_rgba(204,255,0,0.7)] disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime px-5 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:bg-[#d9ff45] hover:shadow-[0_10px_40px_-10px_rgba(204,255,0,0.7)] disabled:cursor-not-allowed disabled:opacity-60 sm:px-8 sm:py-4 sm:text-base"
               >
                 {step === totalSteps - 1 ? "Submit Form" : "Continue"}
                 {submitting ? (

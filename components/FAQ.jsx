@@ -2,30 +2,30 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Reveal from "@/components/ui/Reveal";
+import ScrollBlurUp from "@/components/ui/ScrollBlurUp";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { ChevronDownIcon } from "@/components/icons";
 
 const faqs = [
   {
-    q: "Can vegetarians join?",
-    a: "Absolutely. We build balanced plans around paneer, soya, legumes, dairy and eggs — no meat required. Veg, non-veg, eggetarian and vegan options are all fully supported.",
+    q: "Do you offer vegetarian meal plans?",
+    a: "Absolutely. We build balanced plans around paneer, soya, legumes, dairy and eggs — no meat required. Our veg plans are designed to hit your protein and macro targets using familiar Indian vegetarian food.",
   },
   {
-    q: "How are roadmaps customized?",
-    a: "Your custom roadmap is built using your age, height, weight, food preference, medical history, and your biggest challenges. Our head coach personally reviews your data to calculate your calorie and macro targets.",
+    q: "Do you offer non-vegetarian meal plans?",
+    a: "Yes. Our non-veg plans include chicken, fish, eggs and other protein-rich options integrated into your regular Indian meals. Everything is customized to your taste, budget and health goals.",
+  },
+  {
+    q: "How are plans customized?",
+    a: "Your custom roadmap is built using your age, height, weight, food preference, medical history, and your biggest challenges. Our head coach personally reviews your data to design a plan that fits your lifestyle.",
   },
   {
     q: "How will my coach contact me?",
-    a: "Once you submit the form, our head coach will review your details and contact you via WhatsApp or a direct phone call within 24 hours. We will answer your specific questions and explain your customized diet path.",
+    a: "Once you submit the form, our head coach will review your details and contact you via WhatsApp or a direct phone call within 24 hours. We will answer your specific questions and explain your customized plan.",
   },
   {
     q: "Is the assessment call really free?",
     a: "Yes, 100%. Our initial consultation call and body metric analysis are completely free. We want to give you absolute clarity on your numbers and roadmap before you make any decisions.",
-  },
-  {
-    q: "Do I need supplements?",
-    a: "No. FitEatsBLR is built entirely around real food. No powders, pills or protein shakes required — we make your normal meals work harder for you.",
   },
 ];
 
@@ -36,18 +36,20 @@ export default function FAQ() {
     <section id="faq" className="relative overflow-hidden bg-ink">
       <div className="glow-blob -bottom-32 left-1/4 h-80 w-80 bg-lime/25" />
       <div className="container-app relative section-pad max-w-3xl">
-        <SectionHeader
-          dark
-          eyebrow="FAQ"
-          title="Questions? We've got answers"
-          description="Everything you need to know before you start. Still curious? Reach out on WhatsApp."
-        />
+        <ScrollBlurUp>
+          <SectionHeader
+            dark
+            eyebrow="FAQ"
+            title="Questions? We've got answers"
+            description="Everything you need to know before you start. Still curious? Reach out on WhatsApp."
+          />
+        </ScrollBlurUp>
 
         <div className="flex flex-col gap-4">
           {faqs.map((item, i) => {
             const open = openIndex === i;
             return (
-              <Reveal key={item.q} delay={0.05 * i}>
+              <ScrollBlurUp key={item.q} delay={0.06 * i} y={35} blur={8}>
                 <div
                   className={`overflow-hidden rounded-3xl border transition-colors duration-300 ${
                     open ? "border-lime/50 bg-dark" : "glass-dark border-white/10"
@@ -92,7 +94,7 @@ export default function FAQ() {
                     ) : null}
                   </AnimatePresence>
                 </div>
-              </Reveal>
+              </ScrollBlurUp>
             );
           })}
         </div>

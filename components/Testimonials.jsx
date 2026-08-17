@@ -1,45 +1,44 @@
 "use client";
 
-import Image from "next/image";
-import Reveal from "@/components/ui/Reveal";
+import ScrollBlurUp from "@/components/ui/ScrollBlurUp";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { StarIcon } from "@/components/icons";
 
 const testimonials = [
   {
     name: "Priya S.",
+    initials: "PS",
     role: "Lost 12 kg in 4 months",
-    img: "https://randomuser.me/api/portraits/women/44.jpg",
     text: "I never thought I could lose weight eating dal and roti. FitEatsBLR made my home food work for my goal — and the weekly check-ins kept me honest.",
   },
   {
     name: "Rahul K.",
+    initials: "RK",
     role: "Gained 6 kg lean muscle",
-    img: "https://randomuser.me/api/portraits/men/32.jpg",
     text: "The meal plan fit my gym schedule and my office lunch. No supplements, no starving — just consistent food that finally made sense.",
   },
   {
     name: "Ananya M.",
+    initials: "AM",
     role: "Reversed PCOS symptoms",
-    img: "https://randomuser.me/api/portraits/women/68.jpg",
     text: "As a vegetarian with PCOS, I'd tried everything. My plan was built around paneer, soya and my lifestyle. 6 months in, my energy is completely different.",
   },
   {
     name: "Vikram R.",
+    initials: "VR",
     role: "Lost 18 kg in 6 months",
-    img: "https://randomuser.me/api/portraits/men/75.jpg",
     text: "I travel a lot for work. FitEatsBLR taught me how to order anywhere and still hit my targets. Down 18 kilos and my BP is normal now.",
   },
   {
     name: "Sneha T.",
+    initials: "ST",
     role: "Maintained for 1+ year",
-    img: "https://randomuser.me/api/portraits/women/21.jpg",
     text: "Maintenance used to scare me. Their coach built a plan I could actually sustain — I've kept my results for over a year without obsessing.",
   },
   {
     name: "Karthik V.",
+    initials: "KV",
     role: "Body recomposition",
-    img: "https://randomuser.me/api/portraits/men/85.jpg",
     text: "Lost fat and gained muscle at the same time. The weekly plan tweaks were a game changer. Worth every rupee.",
   },
 ];
@@ -55,17 +54,12 @@ function TestimonialCard({ t }) {
         ))}
       </div>
       <p className="mt-5 min-h-28 text-sm leading-relaxed text-white/75">
-        “{t.text}”
+        &ldquo;{t.text}&rdquo;
       </p>
       <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
-        <Image
-          src={t.img}
-          alt={t.name}
-          width={48}
-          height={48}
-          className="h-12 w-12 rounded-full object-cover ring-2 ring-lime/40"
-          loading="lazy"
-        />
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lime/20 text-lime font-bold text-sm ring-2 ring-lime/40">
+          {t.initials}
+        </div>
         <div>
           <p className="font-semibold text-white">{t.name}</p>
           <p className="text-xs text-lime">{t.role}</p>
@@ -80,14 +74,16 @@ export default function Testimonials() {
     <section id="testimonials" className="relative overflow-hidden bg-ink">
       <div className="glow-blob -top-32 left-0 h-80 w-80 bg-lime/30" />
       <div className="container-app relative section-pad">
-        <SectionHeader
-          dark
-          eyebrow="Testimonials"
-          title="Real people, real transformations"
-          description="Hundreds of members across Bangalore are eating better and feeling stronger."
-        />
+        <ScrollBlurUp>
+          <SectionHeader
+            dark
+            eyebrow="Testimonials"
+            title="Real people, real transformations"
+            description="Hundreds of members across Bangalore are eating better and feeling stronger."
+          />
+        </ScrollBlurUp>
 
-        <Reveal>
+        <ScrollBlurUp delay={0.15} y={50} blur={10}>
           <div className="t-marquee group cursor-grab active:cursor-grabbing">
             <div className="t-marquee-track">
               {[0, 1].map((copy) => (
@@ -99,7 +95,7 @@ export default function Testimonials() {
               ))}
             </div>
           </div>
-        </Reveal>
+        </ScrollBlurUp>
       </div>
     </section>
   );
