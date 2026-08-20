@@ -421,7 +421,7 @@ export default function OnboardingForm() {
                           value={values.gender}
                           onSelect={(l) => selectOption("gender", l)}
                           columns={3}
-                          mobileColumns={1}
+                          mobileColumns={3}
                         />
                         <FieldError error={errors.gender} />
                       </div>
@@ -490,6 +490,7 @@ export default function OnboardingForm() {
                           value={values.goal}
                           onSelect={(l) => selectOption("goal", l)}
                           columns={2}
+                          mobileColumns={2}
                           showHint
                         />
                         <FieldError error={errors.goal} />
@@ -545,6 +546,7 @@ export default function OnboardingForm() {
                           value={values.bestTime}
                           onSelect={(l) => selectOption("bestTime", l)}
                           columns={3}
+                          mobileColumns={3}
                         />
                         <FieldError error={errors.bestTime} />
                       </div>
