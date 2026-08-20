@@ -61,7 +61,7 @@ export default function WhyFitEats() {
                   <f.icon />
                 </span>
                 <h3 className="heading mt-6 text-xl text-ink">{f.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                <p className="mt-3.5 text-base leading-relaxed text-ink/60">
                   {f.text}
                 </p>
               </div>

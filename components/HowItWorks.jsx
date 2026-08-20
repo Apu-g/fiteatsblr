@@ -47,7 +47,7 @@ export default function HowItWorks() {
                   <span className="heading text-xl">{step.num}</span>
                 </div>
                 <h3 className="heading mt-6 text-lg text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/55">
+                <p className="mt-3.5 text-base leading-relaxed text-white/55">
                   {step.text}
                 </p>
               </div>

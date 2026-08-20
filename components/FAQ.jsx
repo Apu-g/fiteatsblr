@@ -62,7 +62,7 @@ export default function FAQ() {
                     aria-expanded={open}
                   >
                     <span
-                      className={`heading text-base sm:text-lg ${
+                      className={`heading text-lg sm:text-xl ${
                         open ? "text-lime" : "text-white"
                       }`}
                     >
@@ -87,7 +87,7 @@ export default function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <p className="px-6 pb-6 text-sm leading-relaxed text-white/60 sm:px-8">
+                        <p className="px-6 pb-6 text-base leading-relaxed text-white/60 sm:px-8">
                           {item.a}
                         </p>
                       </motion.div>
