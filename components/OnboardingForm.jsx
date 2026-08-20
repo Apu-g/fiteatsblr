@@ -92,14 +92,14 @@ function OptionCards({ options, value, onSelect, columns = 2, mobileColumns = 1,
             </span>
             <span className="flex-1 min-w-0">
               <span
-                className={`block font-semibold truncate ${compact ? "text-sm sm:text-base" : ""} ${
+                className={`block font-semibold ${compact ? "text-sm sm:text-base" : ""} ${
                   selected ? "text-lime" : "text-white"
-                }`}
+                } whitespace-normal break-words leading-snug`}
               >
                 {opt.label}
               </span>
               {showHint && opt.hint ? (
-                <span className={`mt-0.5 block text-xs text-white/45 ${compact ? "truncate" : ""}`}>
+                <span className={`mt-0.5 block text-xs text-white/45 ${compact ? "whitespace-normal break-words" : "whitespace-normal break-words"}`}>
                   {opt.hint}
                 </span>
               ) : null}
@@ -128,7 +128,7 @@ function ChipMultiSelect({ options, value, onToggle }) {
             key={opt.value}
             type="button"
             onClick={() => onToggle(opt.value)}
-            className={`flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 sm:px-5 sm:py-2.5 ${
+            className={`flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 sm:px-5 sm:py-2.5 whitespace-nowrap ${
               selected
                 ? "border-lime bg-lime text-ink"
                 : "border-white/15 bg-white/5 text-white/70 hover:border-white/30"
