@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { optionSets, validateStep, stepFields } from "@/lib/form-schema";
 import { submitLead, detectSource } from "@/lib/submit";
 import Button from "@/components/ui/Button";
@@ -278,20 +277,20 @@ export default function OnboardingForm() {
       <div className="glow-blob -right-32 top-24 h-96 w-96 bg-lime/30" />
       <div className="glow-blob -left-24 bottom-0 h-80 w-80 bg-[#3dff8f]/25" />
 
-      <div className="container-app relative section-pad grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-        {/* Trust column */}
-        <div className="lg:sticky lg:top-28">
+      <div className="container-app relative section-pad flex flex-col items-center gap-10">
+        {/* Trust banner — stacked above the form */}
+        <div className="w-full max-w-xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-lime">
             <SparkIcon className="h-4 w-4" />
             Start in 2 minutes
           </span>
-          <h2 className="heading mt-5 text-3xl text-white sm:text-4xl md:text-[2.75rem]">
+          <h2 className="heading mt-5 text-3xl text-white sm:text-4xl">
             Your transformation starts with one form
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/60">
             Answer a few quick questions. Our head coach will personally review your body metrics, goals, and struggles to design a sustainable roadmap for you.
           </p>
-          <ul className="mt-8 flex flex-col gap-4">
+          <ul className="mt-6 inline-flex flex-col gap-3 text-left">
             {[
               "Free assessment call with your coach",
               "Personalized targets delivered within 24 hours",
@@ -305,25 +304,10 @@ export default function OnboardingForm() {
               </li>
             ))}
           </ul>
-          <div className="mt-10 hidden items-center gap-4 rounded-2xl glass-dark p-5 lg:flex">
-            <Image
-              src="/logo.png"
-              alt="FitEatsBLR"
-              width={48}
-              height={48}
-              className="rounded-xl"
-            />
-            <div>
-              <p className="text-sm font-semibold text-white">
-                500+ members transformed
-              </p>
-              <p className="text-xs text-white/50">Average rating 4.9 / 5</p>
-            </div>
-          </div>
         </div>
 
         {/* Form card */}
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-dark shadow-2xl">
+        <div className="w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-dark shadow-2xl">
           {/* Progress bar */}
           <div className="h-1.5 w-full bg-white/10">
             <motion.div
@@ -420,8 +404,8 @@ export default function OnboardingForm() {
                           options={optionSets.gender}
                           value={values.gender}
                           onSelect={(l) => selectOption("gender", l)}
-                          columns={3}
-                          mobileColumns={3}
+                          columns={1}
+                          mobileColumns={1}
                         />
                         <FieldError error={errors.gender} />
                       </div>
@@ -489,8 +473,8 @@ export default function OnboardingForm() {
                           options={optionSets.goal}
                           value={values.goal}
                           onSelect={(l) => selectOption("goal", l)}
-                          columns={2}
-                          mobileColumns={2}
+                          columns={1}
+                          mobileColumns={1}
                           showHint
                         />
                         <FieldError error={errors.goal} />
@@ -501,8 +485,8 @@ export default function OnboardingForm() {
                           options={optionSets.foodPreference}
                           value={values.foodPreference}
                           onSelect={(l) => selectOption("foodPreference", l)}
-                          columns={2}
-                          mobileColumns={2}
+                          columns={1}
+                          mobileColumns={1}
                           compact={true}
                         />
                         <FieldError error={errors.foodPreference} />
@@ -545,8 +529,8 @@ export default function OnboardingForm() {
                           options={optionSets.bestTime}
                           value={values.bestTime}
                           onSelect={(l) => selectOption("bestTime", l)}
-                          columns={3}
-                          mobileColumns={3}
+                          columns={1}
+                          mobileColumns={1}
                         />
                         <FieldError error={errors.bestTime} />
                       </div>
