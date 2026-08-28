@@ -35,6 +35,14 @@ const steps = [
       "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
     benefits: ["Cardio activity plan", "Sleep & recovery guide", "Stress management habits"],
   },
+  {
+    num: "04",
+    title: "Progress Tracking & Coach Support",
+    text: "Stay on track with weekly check-ins, progress reviews and dedicated coach support.",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+    benefits: ["Weekly check-in tracking", "WhatsApp coach support", "Progress reviews & analysis"],
+  },
 ];
 
 export default function Process() {

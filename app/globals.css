@@ -904,9 +904,9 @@ body {
 
 .process-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: 72rem;
+  max-width: 76rem;
   margin: 0 auto;
 }
 
@@ -1110,8 +1110,8 @@ body {
 
 @media (max-width: 1024px) {
   .process-cards-grid {
-    grid-template-columns: 1fr;
-    max-width: 28rem;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 48rem;
     gap: 1.5rem;
   }
 }
@@ -1127,7 +1127,13 @@ body {
     min-height: 40svh;
   }
 
+  .process-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 28rem;
+    gap: 1.25rem;
+  }
+
   .process-step-card {
-    min-height: 22rem;
+    min-height: 20rem;
   }
 }
