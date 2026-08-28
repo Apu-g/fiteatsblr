@@ -58,16 +58,32 @@ const plans = [
 
 const mealPlans = [
   {
-    type: "Veg Basic",
-    price: "99",
-    per: "per meal",
-    features: ["Simple vegetarian meals", "Budget-friendly options", "Customized to your goal"],
+    type: "1 Meal • 1 Week",
+    days: "7 days",
+    price: "799",
+    mrp: "1,099",
+    features: ["1 meal per day", "Simple vegetarian meals", "Customized to your goal"],
   },
   {
-    type: "Veg Premium",
-    price: "149",
-    per: "per meal",
-    features: ["Premium vegetarian meals", "Wide variety of options", "Customized to your goal"],
+    type: "1 Meal • 2 Weeks",
+    days: "15 days",
+    price: "1,599",
+    mrp: "2,299",
+    features: ["1 meal per day", "Budget-friendly options", "Customized to your goal"],
+  },
+  {
+    type: "2 Meals • 1 Week",
+    days: "7 days",
+    price: "1,399",
+    mrp: "2,099",
+    features: ["2 meals per day", "Premium vegetarian meals", "Wide variety of options"],
+  },
+  {
+    type: "2 Meals • 2 Weeks",
+    days: "15 days",
+    price: "2,999",
+    mrp: "4,499",
+    features: ["2 meals per day", "Premium vegetarian meals", "Wide variety of options"],
   },
 ];
 
@@ -147,17 +163,18 @@ export default function Plans() {
         {/* Meal Plans */}
         <div className="mx-auto mt-16 max-w-3xl">
           <ScrollBlurUp>
-            <h3 className="heading text-2xl text-white text-center mb-8">Or order per meal</h3>
+            <h3 className="heading text-2xl text-white text-center mb-8">Or order meal packages</h3>
           </ScrollBlurUp>
           <div className="grid gap-6 sm:grid-cols-2">
             {mealPlans.map((mp, i) => (
               <ScrollBlurUp key={mp.type} delay={0.1 * i} y={40} blur={8}>
                 <div className="card-lift rounded-3xl glass-dark border-2 border-white/10 p-6 sm:p-8">
                   <h4 className="heading text-lg text-white">{mp.type}</h4>
-                  <div className="mt-3 flex items-end gap-1">
+                  <p className="mt-1 text-sm text-white/50">{mp.days}</p>
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-lg font-semibold text-white/40 line-through">₹{mp.mrp}</span>
                     <span className="text-lg font-semibold text-white/60">₹</span>
                     <span className="heading text-4xl text-white">{mp.price}</span>
-                    <span className="mb-1 text-sm text-white/50">{mp.per}</span>
                   </div>
                   <ul className="mt-6 flex flex-col gap-2.5">
                     {mp.features.map((f) => (
@@ -187,7 +204,7 @@ export default function Plans() {
             <ul className="flex flex-col gap-2.5 text-sm text-white/60 leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-lime mt-1 shrink-0">•</span>
-                <span>Minimum 6 meals should be ordered for per-meal plans.</span>
+                <span>Minimum 6 meals should be ordered for membership plans.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-lime mt-1 shrink-0">•</span>
