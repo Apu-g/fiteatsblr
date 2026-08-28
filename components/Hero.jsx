@@ -16,7 +16,10 @@ export default function Hero() {
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
 
     document.body.style.overflow = "hidden";
 
@@ -123,7 +126,7 @@ export default function Hero() {
       delay: 0.15,
       onComplete: () => {
         document.body.style.overflow = "";
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        window.scrollTo(0, 0);
       },
     });
 
@@ -183,30 +186,48 @@ export default function Hero() {
         "<"
       )
       .to(
-        ".preloader-mask",
+        footerLines,
         {
-          scale: 6,
-          duration: 4,
-          ease: "power3.out",
+          yPercent: -100,
+          stagger: 0.08,
+          duration: 0.4,
+          ease: "power4.inOut",
+        },
+        "-=0.1"
+      )
+      .to(
+        ".preloader-progress",
+        {
+          opacity: 0,
+          duration: 0.35,
+          ease: "power2.out",
         },
         "<"
       )
       .to(
-        ".preloader-mask",
+        ".preloader-content",
         {
-          delay: 1,
           opacity: 0,
-          duration: 0.5,
-          ease: "power3.out",
-          display: "none",
+          duration: 0.35,
+          ease: "power2.out",
         },
         "<"
+      )
+      .to(
+        ".preloader",
+        {
+          yPercent: -100,
+          duration: 0.9,
+          ease: "power4.inOut",
+          display: "none",
+        },
+        "+=0.15"
       )
       .to(
         ".hero-img-custom",
         {
           scale: 1,
-          duration: 1.6,
+          duration: 1.2,
           ease: "power3.out",
         },
         "<"
@@ -216,40 +237,40 @@ export default function Hero() {
         {
           opacity: 1,
           scale: 1,
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
         },
-        "-=2.0"
+        "-=0.9"
       )
       .to(
         heroTitleChars,
         {
           yPercent: 0,
           stagger: 0.04,
-          duration: 0.8,
+          duration: 0.7,
           ease: "power4.out",
         },
-        "-=1.6"
+        "-=0.7"
       )
       .to(
         [...subtitleLines, ...descLines],
         {
           yPercent: 0,
           stagger: 0.06,
-          duration: 0.8,
+          duration: 0.7,
           ease: "power4.out",
         },
-        "-=1.4"
+        "-=0.6"
       )
       .to(
         ".hero-buttons-custom",
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          duration: 0.5,
           ease: "power3.out",
         },
-        "-=0.8"
+        "-=0.5"
       )
       .set(".preloader", { display: "none" });
 

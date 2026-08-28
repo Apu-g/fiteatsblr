@@ -229,15 +229,17 @@ body {
 .preloader {
   z-index: 60;
   overflow: hidden;
+  background-color: var(--color-ink);
+  pointer-events: auto;
 }
 
 /* preloader capsule */
 .preloader-progress {
   top: 50%;
   left: 50%;
-  width: min(72vw, 980px);
-  height: min(22vw, 240px);
-  min-height: 140px;
+  width: min(74vw, 1000px);
+  height: min(26vw, 280px);
+  min-height: 150px;
   transform: translate(-50%, -50%) scale(0.86);
   border-radius: 999px;
   background-color: var(--color-dark);
@@ -248,7 +250,11 @@ body {
 
 .preloader-progress-bar {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 13px;
+  border-radius: 0 0 999px 999px;
   background-color: var(--color-lime);
   transform: scaleX(0);
   transform-origin: left center;
@@ -262,40 +268,33 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: clamp(0.5rem, 1.2vw, 1rem);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   padding-inline: clamp(1.5rem, 5vw, 4rem);
-  mix-blend-mode: difference;
   z-index: 3;
 }
 
 .preloader-logo-img {
-  width: clamp(4rem, 10vw, 8rem);
-  height: clamp(4rem, 10vw, 8rem);
+  width: clamp(5.5rem, 12vw, 9.5rem);
+  height: clamp(5.5rem, 12vw, 9.5rem);
   flex-shrink: 0;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.55));
 }
 
 .preloader-logo h1 {
   position: relative;
   color: #ffffff;
-  font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  font-weight: 800;
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .preloader-mask {
   background-color: var(--color-ink);
   transform: translateZ(0);
   backface-visibility: hidden;
-  -webkit-mask:
-    linear-gradient(#ffffff, #ffffff),
-    url("/assets/preloader-bg.svg") center/42% no-repeat;
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#ffffff, #ffffff),
-    url("/assets/preloader-bg.svg") center/42% no-repeat;
-  mask-composite: exclude;
   will-change: transform, opacity;
   z-index: 1;
 }
@@ -556,33 +555,28 @@ body {
   }
 
   .preloader-progress {
-    width: min(92vw, 553px);
-    height: clamp(4rem, 20vw, 10.6rem);
+    width: min(94vw, 560px);
+    height: clamp(5.5rem, 28vw, 13rem);
     min-height: 0;
     transform: translate(-50%, -50%) scale(0.88);
   }
 
   .preloader-logo {
-    padding-inline: clamp(1rem, 6vw, 1.5rem);
-    gap: clamp(0.5rem, 3vw, 0.75rem);
+    padding-inline: clamp(0.75rem, 5vw, 1.25rem);
+    gap: clamp(0.5rem, 2.5vw, 0.75rem);
   }
 
   .preloader-logo-img {
-    width: clamp(3rem, 14vw, 4rem);
-    height: clamp(3rem, 14vw, 4rem);
+    width: clamp(3.5rem, 16vw, 5.5rem);
+    height: clamp(3.5rem, 16vw, 5.5rem);
   }
 
   .preloader-logo h1 {
-    font-size: clamp(1.8rem, 8vw, 3rem);
+    font-size: clamp(1.9rem, 9vw, 3.2rem);
   }
 
   .preloader-mask {
-    -webkit-mask:
-      linear-gradient(#ffffff, #ffffff),
-      url("/assets/preloader-bg.svg") center/90% no-repeat;
-    mask:
-      linear-gradient(#ffffff, #ffffff),
-      url("/assets/preloader-bg.svg") center/90% no-repeat;
+    background-color: var(--color-ink);
   }
 
   .preloader-footer {
