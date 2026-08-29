@@ -4,52 +4,40 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 const meals = [
   {
-    title: "Chicken Meals",
-    tag: "High Protein",
-    recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=75",
-  },
-  {
-    title: "Paneer Meals",
+    title: "Paneer Protein Bowl",
     tag: "Veg Protein",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=75",
+    img: "/meals/panner protein bowl.png",
   },
   {
-    title: "High Protein Bowls",
+    title: "High Protein Bowl",
     tag: "Balanced",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=75",
+    img: "/meals/high protein bowl.jpeg",
   },
   {
     title: "Smoothies",
     tag: "Refreshing",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=800&q=75",
+    img: "/meals/smoothies.jpeg",
   },
   {
     title: "Breakfast",
     tag: "Start Strong",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=75",
+    img: "/meals/breakfast.jpeg",
   },
   {
     title: "Lunch",
     tag: "Family Favourites",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=75",
+    img: "/meals/lunch.jpeg",
   },
   {
     title: "Dinner",
     tag: "Light & Satisfying",
     recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=75",
-  },
-  {
-    title: "Snacks",
-    tag: "Guilt-Free",
-    recipe: "View Recipe",
-    img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=75",
+    img: "/meals/dinner.jpeg",
   },
 ];
 
@@ -64,7 +52,7 @@ export default function MealGallery() {
             description="Every plan is a mix of meals you already love — customized and balanced for your goal."
           />
         </ScrollBlurUp>
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {meals.map((meal, i) => (
             <ScrollBlurUp key={meal.title} delay={0.06 * (i % 4)} y={40} blur={8}>
               <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-dark">
