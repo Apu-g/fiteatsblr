@@ -245,7 +245,7 @@ body::-webkit-scrollbar {
 .preloader {
   z-index: 60;
   overflow: hidden;
-  background-color: var(--color-ink);
+  background-color: var(--color-surface);
   pointer-events: auto;
 }
 
@@ -258,7 +258,7 @@ body::-webkit-scrollbar {
   min-height: 150px;
   transform: translate(-50%, -50%) scale(0.86);
   border-radius: 999px;
-  background-color: var(--color-dark);
+  background-color: #ffffff;
   overflow: hidden;
   z-index: 2;
   will-change: transform, opacity;
@@ -289,26 +289,51 @@ body::-webkit-scrollbar {
   z-index: 3;
 }
 
+.preloader-logo-glow {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-logo-glow::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(200, 200, 200, 0.28) 45%,
+    rgba(200, 200, 200, 0) 100%
+  );
+  filter: blur(14px);
+  pointer-events: none;
+}
+
 .preloader-logo-img {
+  position: relative;
+  z-index: 1;
   width: clamp(5.5rem, 12vw, 9.5rem);
   height: clamp(5.5rem, 12vw, 9.5rem);
   flex-shrink: 0;
-  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.4));
 }
 
 .preloader-logo h1 {
   position: relative;
-  color: #ffffff;
+  color: var(--color-ink);
   font-size: clamp(3.5rem, 7vw, 7.5rem);
   font-weight: 800;
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.02em;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.4);
 }
 
 .preloader-mask {
-  background-color: var(--color-ink);
+  background-color: var(--color-surface);
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform, opacity;
@@ -329,8 +354,8 @@ body::-webkit-scrollbar {
 }
 
 .preloader-footer p {
-  color: #ffffff;
-  opacity: 0.55;
+  color: var(--color-ink);
+  opacity: 0.6;
   font-size: 0.95rem;
   line-height: 1.4;
 }
@@ -400,10 +425,9 @@ body::-webkit-scrollbar {
 .hero-copy-wrap-custom {
   position: absolute;
   inset: 0;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  display: grid;
+  place-items: center;
   z-index: 20;
   background: linear-gradient(
     to right,
@@ -415,27 +439,34 @@ body::-webkit-scrollbar {
 
 .hero-copy-inner-custom {
   position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  max-width: 90rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "logo bottom"
+    "title bottom";
+  align-items: center;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: 0.5rem;
 }
 
 .hero-copy-inner-custom h1 {
+  grid-area: title;
   color: #ffffff;
   text-align: start;
   font-size: clamp(3.8rem, 8vw, 8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 0.95;
-  margin-top: clamp(1rem, 2vh, 2rem);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .hero-logo-area {
+  grid-area: logo;
   display: flex;
   align-items: center;
-  margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
 }
 
 .hero-logo-image {
@@ -447,6 +478,7 @@ body::-webkit-scrollbar {
 }
 
 .hero-bottom-custom {
+  grid-area: bottom;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -468,7 +500,7 @@ body::-webkit-scrollbar {
 
 .hero-bottom-custom p {
   width: 100%;
-  max-w: 26rem;
+  max-width: 26rem;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
   font-weight: 400;
@@ -498,15 +530,8 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
-  .hero-bottom-custom {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 2rem;
-  }
-
   .hero-bottom-custom p {
-    width: 32%;
+    max-width: 32rem;
     text-align: start;
   }
 }
@@ -553,21 +578,25 @@ body::-webkit-scrollbar {
     }
   }
 
+  .hero-copy-inner-custom {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "logo"
+      "title"
+      "bottom";
+    row-gap: 0.75rem;
+  }
+
   .hero-copy-inner-custom h1 {
     font-size: clamp(2.6rem, 11vw, 4.5rem);
     text-align: left;
-    margin-top: clamp(0.5rem, 1.5vh, 1rem);
     max-width: 100%;
   }
 
   .hero-logo-image {
     width: clamp(7rem, 28vw, 11rem);
     height: clamp(7rem, 28vw, 11rem);
-  }
-
-  .hero-bottom-custom {
-    margin-top: auto;
-    margin-bottom: 2rem;
   }
 
   .preloader-progress {
@@ -592,7 +621,7 @@ body::-webkit-scrollbar {
   }
 
   .preloader-mask {
-    background-color: var(--color-ink);
+    background-color: var(--color-surface);
   }
 
   .preloader-footer {
