@@ -6,37 +6,31 @@ const meals = [
   {
     title: "Paneer Protein Bowl",
     tag: "Veg Protein",
-    recipe: "View Recipe",
     img: "/meals/panner protein bowl.png",
   },
   {
     title: "High Protein Bowl",
     tag: "Balanced",
-    recipe: "View Recipe",
     img: "/meals/high protein bowl.jpeg",
   },
   {
     title: "Smoothies",
     tag: "Refreshing",
-    recipe: "View Recipe",
     img: "/meals/smoothies.jpeg",
   },
   {
     title: "Breakfast",
     tag: "Start Strong",
-    recipe: "View Recipe",
     img: "/meals/breakfast.jpeg",
   },
   {
     title: "Lunch",
     tag: "Family Favourites",
-    recipe: "View Recipe",
     img: "/meals/lunch.jpeg",
   },
   {
     title: "Dinner",
     tag: "Light & Satisfying",
-    recipe: "View Recipe",
     img: "/meals/dinner.jpeg",
   },
 ];
@@ -72,9 +66,6 @@ export default function MealGallery() {
                 </span>
                 <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4">
                   <h3 className="heading text-sm sm:text-lg text-white leading-tight">{meal.title}</h3>
-                  <p className="mt-0.5 sm:mt-1 text-[0.65rem] sm:text-xs font-semibold text-lime">
-                    {meal.recipe}
-                  </p>
                 </div>
               </div>
             </ScrollBlurUp>

@@ -424,7 +424,7 @@ export default function Hero() {
                     <Button href="#onboarding" size="md">
                       Start Assessment
                     </Button>
-                    <Button href="#process" variant="outline" size="md">
+                    <Button href="#how-it-works" variant="outline" size="md">
                       Our Process
                     </Button>
                   </div>
