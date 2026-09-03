@@ -42,7 +42,7 @@ export default function Coach() {
           </div>
         </ScrollBlurUp>
 
-        <div className="mt-10 grid gap-8 sm:mt-14 sm:gap-10 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:mt-14 sm:gap-10 md:grid-cols-3">
           {coaches.map((coach, i) => (
             <ScrollBlurUp key={coach.name} delay={0.1 * i} y={50} blur={10}>
               <div className="group flex flex-col items-center text-center">
@@ -59,16 +59,16 @@ export default function Coach() {
                   </div>
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-lime/15 blur-2xl" />
                 </div>
-                <p className="heading mt-6 text-xl text-white">{coach.name}</p>
-                <p className="text-sm text-lime mt-1">{coach.title}</p>
-                <p className="text-xs text-white/40 mt-1">{coach.creds}</p>
+                <p className="heading mt-5 sm:mt-6 text-lg sm:text-xl text-white">{coach.name}</p>
+                <p className="text-xs sm:text-sm text-lime mt-1">{coach.title}</p>
+                <p className="text-[0.65rem] sm:text-xs text-white/40 mt-1">{coach.creds}</p>
               </div>
             </ScrollBlurUp>
           ))}
         </div>
 
         <ScrollBlurUp delay={0.3}>
-          <div className="mt-12 text-center">
+          <div className="mt-10 sm:mt-12 text-center">
             <Button href="#onboarding">Book Free Consultation</Button>
           </div>
         </ScrollBlurUp>

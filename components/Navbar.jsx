@@ -37,7 +37,7 @@ export default function Navbar() {
         scrolled ? "glass-nav" : "bg-transparent"
       }`}
     >
-      <nav className="container-app flex h-20 items-center justify-between">
+      <nav className="container-app flex h-16 sm:h-20 items-center justify-between">
         <a href="#top" className="flex items-center gap-3" onClick={close}>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -50,9 +50,9 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="FitEatsBLR logo"
-              width={56}
-              height={56}
-              className="rounded-2xl navbar-logo-glow"
+              width={48}
+              height={48}
+              className="rounded-xl sm:rounded-2xl navbar-logo-glow"
               priority
             />
           </motion.div>
@@ -63,7 +63,7 @@ export default function Navbar() {
               x: scrolled ? 0 : -8,
             }}
             transition={{ duration: 0.4, delay: scrolled ? 0.1 : 0, ease: [0.22, 1, 0.36, 1] }}
-            className="heading text-2xl text-white"
+            className="heading text-xl sm:text-2xl text-white"
           >
             FitEats<span className="text-lime">BLR</span>
           </motion.span>
@@ -115,7 +115,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
-                  className="heading rounded-2xl px-4 py-4 text-2xl text-white transition-colors hover:bg-white/5 hover:text-lime"
+                  className="heading rounded-2xl px-4 py-3.5 sm:py-4 text-xl sm:text-2xl text-white transition-colors hover:bg-white/5 hover:text-lime"
                 >
                   {link.label}
                 </motion.a>

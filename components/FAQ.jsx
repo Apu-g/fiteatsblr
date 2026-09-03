@@ -45,7 +45,7 @@ export default function FAQ() {
           />
         </ScrollBlurUp>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:gap-4">
           {faqs.map((item, i) => {
             const open = openIndex === i;
             return (
@@ -58,11 +58,11 @@ export default function FAQ() {
                   <button
                     type="button"
                     onClick={() => setOpenIndex(open ? -1 : i)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left sm:px-8"
+                    className="flex w-full items-center justify-between gap-3 sm:gap-4 px-5 py-4 text-left sm:px-8 sm:py-5"
                     aria-expanded={open}
                   >
                     <span
-                      className={`heading text-lg sm:text-xl ${
+                      className={`heading text-base sm:text-xl ${
                         open ? "text-lime" : "text-white"
                       }`}
                     >
@@ -87,7 +87,7 @@ export default function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <p className="px-6 pb-6 text-base leading-relaxed text-white/60 sm:px-8">
+                        <p className="px-5 pb-5 text-sm sm:text-base leading-relaxed text-white/60 sm:px-8 sm:pb-6">
                           {item.a}
                         </p>
                       </motion.div>

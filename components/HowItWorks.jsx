@@ -38,16 +38,16 @@ export default function HowItWorks() {
           />
         </ScrollBlurUp>
 
-        <div className="relative grid gap-6 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative grid gap-5 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden h-px bg-gradient-to-r from-transparent via-lime/40 to-transparent lg:block" />
           {steps.map((step, i) => (
             <ScrollBlurUp key={step.num} delay={0.1 * i} y={50} blur={10}>
               <div className="relative flex h-full flex-col items-center text-center">
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-lime/30 bg-dark text-lime shadow-[0_0_30px_-6px_rgba(204,255,0,0.5)]">
-                  <span className="heading text-xl">{step.num}</span>
+                <div className="relative z-10 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl border border-lime/30 bg-dark text-lime shadow-[0_0_30px_-6px_rgba(204,255,0,0.5)]">
+                  <span className="heading text-lg sm:text-xl">{step.num}</span>
                 </div>
-                <h3 className="heading mt-6 text-lg text-white">{step.title}</h3>
-                <p className="mt-3.5 text-base leading-relaxed text-white/55">
+                <h3 className="heading mt-5 sm:mt-6 text-base sm:text-lg text-white">{step.title}</h3>
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/55">
                   {step.text}
                 </p>
               </div>

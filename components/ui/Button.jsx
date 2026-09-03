@@ -7,9 +7,9 @@ export default function Button({
   ...props
 }) {
   const sizes = {
-    sm: "px-5 py-2.5 text-sm",
-    md: "px-7 py-3.5 text-sm",
-    lg: "px-8 py-4 text-base",
+    sm: "px-4 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm",
+    md: "px-5 py-3 text-xs sm:px-7 sm:py-3.5 sm:text-sm",
+    lg: "px-6 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-base",
   };
 
   const variants = {

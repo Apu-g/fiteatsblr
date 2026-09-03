@@ -101,11 +101,11 @@ export default function Plans() {
           />
         </ScrollBlurUp>
 
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-5 sm:gap-6 md:grid-cols-3">
           {plans.map((plan, i) => (
             <ScrollBlurUp key={plan.name} delay={0.12 * i} y={50} blur={10}>
               <div
-                className={`card-lift relative flex h-full flex-col rounded-3xl border-2 p-6 sm:p-8 md:p-10 ${
+                className={`card-lift relative flex h-full flex-col rounded-2xl sm:rounded-3xl border-2 p-5 sm:p-8 md:p-10 ${
                   plan.popular
                     ? "border-lime bg-dark shadow-[0_20px_60px_-20px_rgba(204,255,0,0.35)]"
                     : "glass-dark border-white/10"
@@ -123,30 +123,30 @@ export default function Plans() {
                 <div className="mt-6 flex items-end gap-2">
                   <span className="text-lg font-semibold text-white/40 line-through">₹{plan.mrp}</span>
                   <span className="text-lg font-semibold text-white/60">₹</span>
-                  <span className="heading text-4xl sm:text-5xl text-white">
+                  <span className="heading text-3xl sm:text-5xl text-white">
                     {plan.price}
                   </span>
                   <span className="mb-1.5 text-sm text-white/50">total</span>
                 </div>
 
-                <ul className="mt-8 flex flex-col gap-3.5">
+                <ul className="mt-6 sm:mt-8 flex flex-col gap-3 sm:gap-3.5">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3">
+                    <li key={f} className="flex items-start gap-2.5 sm:gap-3">
                       <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                        className={`mt-0.5 flex h-4 w-4 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-full ${
                           plan.popular ? "bg-lime text-ink" : "bg-white/10 text-lime"
                         }`}
                       >
                         <CheckIcon className="h-3.5 w-3.5" />
                       </span>
-                      <span className="text-sm leading-relaxed text-white/75">
+                      <span className="text-xs sm:text-sm leading-relaxed text-white/75">
                         {f}
                       </span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-10 flex flex-1 items-end">
+                <div className="mt-8 sm:mt-10 flex flex-1 items-end">
                   <Button
                     href="#onboarding"
                     variant={plan.popular ? "primary" : "outline"}
@@ -161,20 +161,20 @@ export default function Plans() {
         </div>
 
         {/* Meal Plans */}
-        <div className="mx-auto mt-16 max-w-3xl">
+        <div className="mx-auto mt-12 sm:mt-16 max-w-3xl">
           <ScrollBlurUp>
-            <h3 className="heading text-2xl text-white text-center mb-8">Or order meal packages</h3>
+            <h3 className="heading text-xl sm:text-2xl text-white text-center mb-6 sm:mb-8">Or order meal packages</h3>
           </ScrollBlurUp>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
             {mealPlans.map((mp, i) => (
               <ScrollBlurUp key={mp.type} delay={0.1 * i} y={40} blur={8}>
-                <div className="card-lift rounded-3xl glass-dark border-2 border-white/10 p-6 sm:p-8">
+                <div className="card-lift rounded-2xl sm:rounded-3xl glass-dark border-2 border-white/10 p-5 sm:p-8">
                   <h4 className="heading text-lg text-white">{mp.type}</h4>
                   <p className="mt-1 text-sm text-white/50">{mp.days}</p>
                   <div className="mt-4 flex items-end gap-2">
                     <span className="text-lg font-semibold text-white/40 line-through">₹{mp.mrp}</span>
                     <span className="text-lg font-semibold text-white/60">₹</span>
-                    <span className="heading text-4xl text-white">{mp.price}</span>
+                    <span className="heading text-3xl sm:text-4xl text-white">{mp.price}</span>
                   </div>
                   <ul className="mt-6 flex flex-col gap-2.5">
                     {mp.features.map((f) => (
@@ -199,7 +199,7 @@ export default function Plans() {
 
         {/* Terms & Conditions */}
         <ScrollBlurUp delay={0.2} y={40} blur={8}>
-          <div className="mx-auto mt-12 max-w-3xl rounded-2xl glass-dark border border-white/10 p-6 sm:p-8">
+          <div className="mx-auto mt-10 sm:mt-12 max-w-3xl rounded-xl sm:rounded-2xl glass-dark border border-white/10 p-5 sm:p-8">
             <h4 className="heading text-base text-white mb-4">Terms & Conditions</h4>
             <ul className="flex flex-col gap-2.5 text-sm text-white/60 leading-relaxed">
               <li className="flex items-start gap-2">

@@ -47,22 +47,22 @@ const stars = [1, 2, 3, 4, 5];
 
 function TestimonialCard({ t }) {
   return (
-    <article className="t-card card-lift group w-[82vw] max-w-[400px] shrink-0 snap-start rounded-3xl glass-dark p-7 sm:w-[400px] hover:scale-[1.02]">
+    <article className="t-card card-lift group w-[85vw] max-w-[400px] shrink-0 snap-start rounded-2xl sm:rounded-3xl glass-dark p-5 sm:p-7 sm:w-[400px] hover:scale-[1.02]">
       <div className="flex gap-1 text-lime">
         {stars.map((s) => (
-          <StarIcon key={s} className="h-4 w-4" />
+          <StarIcon key={s} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         ))}
       </div>
-      <p className="mt-5 min-h-28 text-sm leading-relaxed text-white/75">
+      <p className="mt-4 sm:mt-5 min-h-20 sm:min-h-28 text-xs sm:text-sm leading-relaxed text-white/75">
         &ldquo;{t.text}&rdquo;
       </p>
       <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lime/20 text-lime font-bold text-sm ring-2 ring-lime/40">
+        <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-lime/20 text-lime font-bold text-xs sm:text-sm ring-2 ring-lime/40">
           {t.initials}
         </div>
         <div>
-          <p className="font-semibold text-white">{t.name}</p>
-          <p className="text-xs text-lime">{t.role}</p>
+          <p className="font-semibold text-sm sm:text-base text-white">{t.name}</p>
+          <p className="text-[0.65rem] sm:text-xs text-lime">{t.role}</p>
         </div>
       </div>
     </article>

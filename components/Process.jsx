@@ -174,7 +174,7 @@ export default function Process() {
             <h2 className="heading">
               Every transformation starts with one decision.
             </h2>
-            <p className="mt-4 text-base text-white/50 max-w-md mx-auto">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-white/50 max-w-md mx-auto px-4 sm:px-0">
               We don&apos;t sell generic plans. Here is exactly how we work with
               you to build a sustainable roadmap for your body, lifestyle and goals.
             </p>

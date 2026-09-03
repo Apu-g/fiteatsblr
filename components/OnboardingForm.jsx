@@ -74,7 +74,7 @@ function OptionCards({ options, value, onSelect, columns = 2, mobileColumns = 1,
             key={opt.label}
             type="button"
             onClick={() => onSelect(opt.label)}
-            className={`flex items-center text-left transition-all duration-200 border-2 rounded-2xl ${
+            className={`flex items-center text-left transition-all duration-200 border-2 rounded-xl sm:rounded-2xl ${
               compact ? "gap-2.5 p-3 sm:gap-4 sm:p-4" : "gap-4 p-4"
             } ${
               selected
@@ -91,7 +91,7 @@ function OptionCards({ options, value, onSelect, columns = 2, mobileColumns = 1,
             </span>
             <span className="flex-1 min-w-0">
               <span
-                className={`block font-semibold ${compact ? "text-sm sm:text-base" : ""} ${
+                className={`block font-semibold ${compact ? "text-xs sm:text-base" : "text-sm sm:text-base"} ${
                   selected ? "text-lime" : "text-white"
                 } whitespace-normal break-words leading-snug`}
               >
@@ -119,7 +119,7 @@ function OptionCards({ options, value, onSelect, columns = 2, mobileColumns = 1,
 
 function ChipMultiSelect({ options, value, onToggle }) {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2 sm:gap-3">
       {options.map((opt) => {
         const selected = value.includes(opt.value);
         return (
@@ -127,7 +127,7 @@ function ChipMultiSelect({ options, value, onToggle }) {
             key={opt.value}
             type="button"
             onClick={() => onToggle(opt.value)}
-            className={`flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 sm:px-5 sm:py-2.5 whitespace-nowrap ${
+            className={`flex items-center gap-1.5 sm:gap-2 rounded-full border-2 px-3 sm:px-5 py-1.5 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
               selected
                 ? "border-lime bg-lime text-ink"
                 : "border-white/15 bg-white/5 text-white/70 hover:border-white/30"
@@ -243,7 +243,7 @@ export default function OnboardingForm() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease }}
-            className="mx-auto max-w-xl rounded-[2rem] glass-dark p-10 text-center sm:p-14"
+            className="mx-auto max-w-xl rounded-2xl sm:rounded-[2rem] glass-dark p-8 text-center sm:p-14"
           >
             <motion.span
               initial={{ scale: 0 }}
@@ -253,14 +253,14 @@ export default function OnboardingForm() {
             >
               <CheckIcon className="h-10 w-10" />
             </motion.span>
-            <h2 className="heading mt-7 text-3xl text-white sm:text-4xl">
+            <h2 className="heading mt-6 sm:mt-7 text-2xl sm:text-4xl text-white">
               Thank You!
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-white/60">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-white/60">
               Our coach will review your details and contact you soon on your phone or email. Keep your
               phone nearby — expect a message on WhatsApp or a call shortly.
             </p>
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
               <Button href={process.env.NEXT_PUBLIC_WHATSAPP || "https://wa.me/919876543210"} target="_blank" variant="outline">
                 <WhatsAppIcon className="h-5 w-5" />
                 Message us on WhatsApp
@@ -277,20 +277,20 @@ export default function OnboardingForm() {
       <div className="glow-blob -right-32 top-24 h-96 w-96 bg-lime/30" />
       <div className="glow-blob -left-24 bottom-0 h-80 w-80 bg-[#3dff8f]/25" />
 
-      <div className="container-app relative section-pad flex flex-col items-center gap-10">
+      <div className="container-app relative section-pad flex flex-col items-center gap-8 sm:gap-10">
         {/* Trust banner — stacked above the form */}
-        <div className="w-full max-w-xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-lime">
+        <div className="w-full max-w-xl text-center px-2 sm:px-0">
+          <span className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-3 py-1.5 sm:px-4 text-[0.65rem] sm:text-xs font-semibold uppercase tracking-[0.18em] text-lime">
             <SparkIcon className="h-4 w-4" />
             Start in 2 minutes
           </span>
-          <h2 className="heading mt-5 text-3xl text-white sm:text-4xl">
+          <h2 className="heading mt-4 sm:mt-5 text-2xl sm:text-4xl text-white">
             Your transformation starts with one form
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/60">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-white/60">
             Answer a few quick questions. Our head coach will personally review your body metrics, goals, and struggles to design a sustainable roadmap for you.
           </p>
-          <ul className="mt-6 inline-flex flex-col gap-3 text-left">
+          <ul className="mt-4 sm:mt-6 inline-flex flex-col gap-2.5 sm:gap-3 text-left">
             {[
               "Free assessment call with your coach",
               "Personalized targets delivered within 24 hours",
@@ -300,14 +300,14 @@ export default function OnboardingForm() {
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-lime text-ink">
                   <CheckIcon className="h-4 w-4" />
                 </span>
-                <span className="font-medium text-white/80">{item}</span>
+                <span className="font-medium text-sm sm:text-base text-white/80">{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Form card */}
-        <div className="w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-dark shadow-2xl">
+        <div className="w-full max-w-xl overflow-hidden rounded-2xl sm:rounded-[2rem] border border-white/10 bg-dark shadow-2xl">
           {/* Progress bar */}
           <div className="h-1.5 w-full bg-white/10">
             <motion.div
@@ -318,7 +318,7 @@ export default function OnboardingForm() {
             />
           </div>
 
-          <div className="p-6 sm:p-10">
+          <div className="p-5 sm:p-10">
             <div className="mb-7 flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
                 Step {step + 1} of {totalSteps}
@@ -334,8 +334,8 @@ export default function OnboardingForm() {
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.3, ease }}
               >
-                <h3 className="heading text-2xl text-white">{current.title}</h3>
-                <p className="mt-1.5 text-sm text-white/50">{current.subtitle}</p>
+                <h3 className="heading text-xl sm:text-2xl text-white">{current.title}</h3>
+                <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-white/50">{current.subtitle}</p>
 
                 <div className="mt-7">
                   {/* Step 1 — Personal */}
@@ -557,7 +557,7 @@ export default function OnboardingForm() {
                   {/* Step 6 — Review */}
                   {step === 5 ? (
                     <div>
-                      <div className="grid grid-cols-1 gap-x-6 gap-y-3 rounded-2xl bg-white/5 p-5 sm:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-x-4 sm:gap-x-6 gap-y-2.5 sm:gap-y-3 rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5 sm:grid-cols-2">
                         {[
                           ["Name", values.name],
                           ["Phone", values.phone],
@@ -573,17 +573,17 @@ export default function OnboardingForm() {
                           ["Best Time to Contact", values.bestTime],
                         ].map(([label, value]) => (
                           <div key={label}>
-                            <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">
+                            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-white/40">
                               {label}
                             </p>
-                            <p className="mt-0.5 text-sm font-medium text-white">
+                            <p className="mt-0.5 text-xs sm:text-sm font-medium text-white">
                               {value || "—"}
                             </p>
                           </div>
                         ))}
                       </div>
                       {values.notes && (
-                        <div className="mt-5 rounded-2xl bg-white/5 p-5">
+                        <div className="mt-4 sm:mt-5 rounded-xl sm:rounded-2xl bg-white/5 p-4 sm:p-5">
                           <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">
                             Your Questions / Comments
                           </p>
@@ -601,7 +601,7 @@ export default function OnboardingForm() {
             </AnimatePresence>
 
             {/* Navigation */}
-            <div className="mt-9 flex items-center justify-between gap-3">
+            <div className="mt-7 sm:mt-9 flex items-center justify-between gap-3">
               {step > 0 ? (
                 <button
                   type="button"
@@ -639,7 +639,7 @@ export default function OnboardingForm() {
             </div>
 
             {submitting ? (
-              <div className="mt-6 rounded-2xl border border-lime/30 bg-lime/10 p-4 text-center">
+              <div className="mt-5 sm:mt-6 rounded-xl sm:rounded-2xl border border-lime/30 bg-lime/10 p-3 sm:p-4 text-center">
                 <p className="text-sm font-semibold text-lime">
                   Sending details to our coach...
                 </p>

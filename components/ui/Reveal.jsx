@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useMediaQuery } from "framer-motion";
 
 export default function Reveal({
   children,
@@ -11,13 +11,17 @@ export default function Reveal({
   className,
 }) {
   const prefersReduced = useReducedMotion();
+  const isMobile = useMediaQuery("(max-width: 640px)");
+
+  const mobileY = isMobile ? Math.min(y, 16) : y;
+  const mobileDuration = isMobile ? 0.5 : 0.65;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: prefersReduced ? 0 : y, x: prefersReduced ? 0 : x }}
+      initial={{ opacity: 0, y: prefersReduced ? 0 : mobileY, x: prefersReduced ? 0 : x }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once, margin: "-40px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once, margin: "-30px" }}
+      transition={{ duration: mobileDuration, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

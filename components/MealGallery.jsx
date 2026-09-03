@@ -46,11 +46,11 @@ export default function MealGallery() {
             description="Every plan is a mix of meals you already love — customized and balanced for your goal."
           />
         </ScrollBlurUp>
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {meals.map((meal, i) => (
             <ScrollBlurUp key={meal.title} delay={0.06 * (i % 4)} y={40} blur={8}>
-              <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-dark">
-                <div className="aspect-[4/5] overflow-hidden">
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-3xl bg-dark">
+                <div className="aspect-[3/4] sm:aspect-[4/5] overflow-hidden">
                   <Image
                     src={meal.img}
                     alt={meal.title}

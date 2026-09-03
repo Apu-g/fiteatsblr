@@ -102,7 +102,7 @@ export default function ScrollReveal() {
         ScrollTrigger.create({
           trigger: section,
           start: "top top",
-          end: `+=${window.innerWidth < 768 ? window.innerHeight * 1.2 : window.innerHeight * 1.8}px`,
+          end: `+=${window.innerWidth < 768 ? window.innerHeight * 1.0 : window.innerHeight * 1.8}px`,
           pin: true,
           pinSpacing: true,
           scrub: 0.8,

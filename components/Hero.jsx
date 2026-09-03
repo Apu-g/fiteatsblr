@@ -420,7 +420,7 @@ export default function Hero() {
                     Personalized Indian meal roadmaps built around your body, your goals, and your budget. Free assessment call with your coach included.
                   </p>
                   
-                  <div className="hero-buttons-custom mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
+                  <div className="hero-buttons-custom mt-4 sm:mt-6 flex flex-col gap-2.5 sm:flex-row sm:gap-4">
                     <Button href="#onboarding" size="md">
                       Start Assessment
                     </Button>
