@@ -5,7 +5,7 @@ import { CheckIcon } from "@/components/icons";
 
 const plans = [
   {
-    name: "3 Months",
+    name: "Fit Transform 3 Months",
     price: "4,499",
     mrp: "5,999",
     tagline: "Kickstart your transformation",
@@ -21,7 +21,7 @@ const plans = [
     ],
   },
   {
-    name: "6 Months",
+    name: "Fit Transform 6 Months",
     price: "6,499",
     mrp: "8,499",
     tagline: "Our complete coaching experience",
@@ -38,7 +38,7 @@ const plans = [
     ],
   },
   {
-    name: "12 Months",
+    name: "Fit Transform 12 Months",
     price: "9,499",
     mrp: "12,999",
     tagline: "Complete lifestyle transformation",
