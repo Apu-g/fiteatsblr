@@ -503,7 +503,7 @@ body::-webkit-scrollbar {
   line-height: 1.15;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem sm:0.35rem;
+  gap: 0.25rem;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -1159,13 +1159,13 @@ body::-webkit-scrollbar {
 
 .process-eyebrow {
   display: inline-block;
-  margin-bottom: 0.75rem sm:1rem;
-  padding: 0.25rem 0.75rem sm:0.3rem 0.9rem;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
   border: 1px solid rgba(204, 255, 0, 0.3);
   border-radius: 999px;
   background: rgba(204, 255, 0, 0.1);
   color: var(--color-lime);
-  font-size: 0.65rem sm:0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1180,7 +1180,15 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 640px) {
-  .process-intro-desc {
+@media (min-width: 640px) {
+  .process-eyebrow {
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.75rem;
+  }
+}
+
+.process-intro-desc {
     font-size: 0.85rem;
     max-width: 22rem;
   }
