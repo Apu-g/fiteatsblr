@@ -1,6 +1,19 @@
 "use client";
 
-import { motion, useReducedMotion, useMediaQuery } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect } from "react";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 640px)");
+    setIsMobile(mql.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+  return isMobile;
+}
 
 export default function Reveal({
   children,
@@ -11,7 +24,7 @@ export default function Reveal({
   className,
 }) {
   const prefersReduced = useReducedMotion();
-  const isMobile = useMediaQuery("(max-width: 640px)");
+  const isMobile = useIsMobile();
 
   const mobileY = isMobile ? Math.min(y, 16) : y;
   const mobileDuration = isMobile ? 0.5 : 0.65;
